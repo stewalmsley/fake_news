@@ -8,6 +8,7 @@ class FullArticle extends Component {
     };
     render() {
         return <h1>{this.state.article.title}</h1>
+        
     }
     componentDidMount() {
         this.fetchArticle();

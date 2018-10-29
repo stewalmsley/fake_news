@@ -10,3 +10,8 @@ export const getArticle = async (articleId) =>{
     const {data} = await axios.get(`${BASE_URL}/articles/${articleId}`);
     return data.articleWithCommentCount;
   }
+
+  export const getUser = async (username) =>{
+    const {data} = await axios.get(`${BASE_URL}/users/${username}`);
+    return data.user;
+  }

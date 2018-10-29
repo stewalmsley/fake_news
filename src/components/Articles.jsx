@@ -9,7 +9,7 @@ class Articles extends Component {
     };
     render() {
         return <div>{this.state.articles.map(article => {
-        return <ArticleSnapshot article={article}></ArticleSnapshot>
+        return <ArticleSnapshot key={article._id} article={article}></ArticleSnapshot>
         })}</div>
     }
     componentDidMount() {
@@ -19,9 +19,24 @@ class Articles extends Component {
     fetchArticles() {
         api.getArticles()
         .then(articles => {
+            const croppedArticles = this.cropArticleBodies(articles);
+            const sortedArticles = this.sortArticles(croppedArticles);
             this.setState ({
-                articles
+                articles: croppedArticles
             })
+        })
+    }
+
+    cropArticleBodies(articles) {
+        return articles.map(article => {
+            const body = article.body.split(' ').slice(0, 50).join(' ');
+            return {...article, body};
+        })
+    }
+
+    sortArticles(articles) {
+        return articles.sort((article1, article2) => {
+            return article2.commentCount - article1.commentCount
         })
     }
 }

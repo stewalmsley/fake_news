@@ -5,14 +5,20 @@ import { Link } from '@reach/router';
 const ArticleSnapshot = ({ article }) => {
     return (
         <div className="article">
+        <Link to={`/users/${article.created_by.username}`}>{article.created_by.name}: </Link>
+            
             <Link to={`/articles/${article._id}`}>
-                <h5> {article.title} </h5>  
-                <h6>{article.body}</h6>
-                <h6>Comments: {article.commentCount}</h6>
+                {" "}{article.title}  
+                <h6>{article.body}<br></br> <span className="readMore">  ...Read More </span> </h6>
+                <h6>Comments: {article.commentCount} Votes: {article.votes}</h6>
             </Link>
             
         </div>
     );
+
+    
+
+   
 };
 
 ArticleSnapshot.propTypes = {
