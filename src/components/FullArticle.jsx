@@ -4,10 +4,18 @@ import * as api from '../api';
 
 class FullArticle extends Component {
     state = {
-        article: {}
+        article: {},
+        comments: {},
+        loaded: false
     };
     render() {
-        return <h1>{this.state.article.title}</h1>
+        const { loaded } = this.state;
+        const { title, created_by, created_at} = this.state.article;
+        return <div>
+        {loaded && <h1>{title}</h1>}
+        {loaded && <h2>{created_by.name} { " " } {created_at}  </h2>}
+        
+        </div>
         
     }
     componentDidMount() {
@@ -18,8 +26,10 @@ class FullArticle extends Component {
         api.getArticle(this.props.articleId)
         .then(article => {
             this.setState ({
-                article
+                article,
+                loaded: true
             })
+
         })
     }
 }
