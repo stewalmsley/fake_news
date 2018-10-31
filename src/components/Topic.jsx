@@ -22,12 +22,18 @@ class Topic extends Component {
     componentDidMount() {
         this.fetchArticles();
       }
+    
+    componentDidUpdate(prevProps) {
+        if (prevProps.topic_slug !== this.props.topic_slug) {
+            this.fetchArticles();
+          }
+    }
 
     fetchArticles() {
         api.getArticles(this.props.topic_slug)
         .then(articles  => {
-            const croppedArticles = utils.cropArticleBodies(articles);
-            const sortedArticles = utils.sortArticles(croppedArticles);
+            const croppedArticles = utils.cropArticleOrCommentBodies(articles, 50);
+            const sortedArticles = utils.sortArticlesOrComments(croppedArticles, "commentCount");
             this.setState ({
                 articles : sortedArticles,
             })
@@ -36,7 +42,7 @@ class Topic extends Component {
 }
 
 Topic.propTypes = {
-
+    topic_slug: PropTypes.string
 };
 
 export default Topic;

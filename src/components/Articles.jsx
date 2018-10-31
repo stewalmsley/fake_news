@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import * as api from '../api';
 import * as utils from '../utils';
 import ArticleSnapshot from './ArticleSnapshot';
@@ -20,8 +20,7 @@ class Articles extends Component {
     fetchArticles() {
         api.getArticles()
         .then(articles => {
-            const croppedArticles = utils.cropArticleBodies(articles);
-            const sortedArticles = utils.sortArticles(croppedArticles);
+            const sortedArticles = utils.sortArticlesOrComments(articles, "commentCount");
             this.setState ({
                 articles: sortedArticles
             })
