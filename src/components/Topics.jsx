@@ -15,7 +15,7 @@ const Topics = props => {
 };
 
 Topics.propTypes = {
-    
+    topics: PropTypes.array.isRequired
 };
 
 export default Topics;

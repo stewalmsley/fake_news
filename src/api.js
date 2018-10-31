@@ -10,11 +10,16 @@ export const getArticles = async (topic) =>{
   return data.articles
 }
 
-export const getArticle = async (articleId) =>{
+export const getArticle = async (articleId) => {
     const { data } = await axios.get(`${BASE_URL}/articles/${articleId}`);
     data.articleWithCommentCount.topic = utils.createTopicKey(data.articleWithCommentCount);
     return data.articleWithCommentCount;
   }
+
+export const deleteArticle = async (articleId) => {
+  const { status } = await axios.delete(`${BASE_URL}/articles/${articleId}`);
+  return status;
+}
 
   export const getArticleComments = async (articleId) =>{
     const { data } = await axios.get(`${BASE_URL}/articles/${articleId}/comments`);
@@ -44,3 +49,8 @@ export const getArticle = async (articleId) =>{
     const { data } = await axios.get(`${BASE_URL}/topics`)
     return data.topics
   }
+
+  export const postArticle = async(topic_slug, newArticle) => {
+    const { data } = await axios.post(`${BASE_URL}/topics/${topic_slug}/articles`, newArticle)
+    return data.articleWithCommentCount
+  } 

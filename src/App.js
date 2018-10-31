@@ -28,10 +28,10 @@ class App extends Component {
         <nav></nav>
       <Router>
       <Home path="/" />
-      <FullArticle path="/articles/:articleId" />
+      <FullArticle user={user} path="/articles/:articleId" />
       <User path="/users/:username" />
       <Topic path="/topics/:topic_slug/articles" />
-      <CreateArticle topics={topics} path="/create"/>
+      <CreateArticle topics={topics} user={user} path="/create"/>
       </Router>
       <section><Sidebar user={user} users={users} topics={topics} loaded={loaded}/></section>
         <footer></footer>
