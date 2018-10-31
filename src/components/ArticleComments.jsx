@@ -8,16 +8,20 @@ import AddComment from './AddComment';
 class ArticleComments extends Component {
     state = {
         comments: [],
+        deleteError: false
     };
     render() {
-        const { loaded, commentCount } = this.props;
-        const { comments } = this.state;
+        const { loaded, commentCount, user_id } = this.props;
+        const { comments, deleteError } = this.state;
     return (
          <div className="articleComments">
          {loaded && <AddComment addComment={this.addComment}></AddComment>}
         {loaded && <h6>Comments ({commentCount}): </h6>}
         {comments.map(comment => {
-            return <CommentSnapshot key={comment._id} comment={comment}></CommentSnapshot>
+            return ( 
+            <div>
+            <CommentSnapshot deleteError={deleteError} user_id={user_id} key={comment._id} comment={comment} deleteComment={this.deleteComment}></CommentSnapshot></div>
+            )
         })}
         </div>   
         );
@@ -46,6 +50,17 @@ class ArticleComments extends Component {
             this.setState({
                 comments: updatedComments, 
             })
+        })
+    }
+
+    deleteComment = (commentId) => {
+        api.deleteComment(commentId)
+        .then(status => {
+        if (status < 300) this.fetchArticleComments();
+        else this.setState({
+            deleteError: true
+        })
+        
         })
     }
 }

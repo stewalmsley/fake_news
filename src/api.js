@@ -21,10 +21,15 @@ export const deleteArticle = async (articleId) => {
   return status;
 }
 
-  export const getArticleComments = async (articleId) =>{
+  export const getArticleComments = async (articleId) => {
     const { data } = await axios.get(`${BASE_URL}/articles/${articleId}/comments`);
     data.comments = utils.addKeysToComments(data.comments)
     return data.comments;
+  }
+
+  export const deleteComment = async (commentId) => {
+    const { status } = await axios.delete(`${BASE_URL}/comments/${commentId}`);
+    return status;  
   }
 
   export const getUser = async (username) => {

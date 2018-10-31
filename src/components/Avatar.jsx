@@ -8,9 +8,9 @@ class Avatar extends Component {
     render() {
     
                 const { url } = this.state
-        return <div><img src={url}alt="Avatar" onError={()=>{this.switchURL()}} height="100px" width="100px"></img></div> 
+        return <div><img src={url}alt="Avatar" onError={this.switchURL} height="100px" width="100px"></img></div> 
     }
-    switchURL() {
+    switchURL = () => {
         this.setState({
             url: "/dog.jpg"
         })
