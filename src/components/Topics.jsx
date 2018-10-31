@@ -8,7 +8,7 @@ const Topics = props => {
         <div>
             <h6>Trending Topics: </h6>
             {topics.map(topic => {
-                return <Link to={`/topics/${topic.slug}/articles`}><h6>{topic.title}</h6></Link>
+                return <Link key={topic._id} to={`/topics/${topic.slug}/articles`}><h6>{topic.title}</h6></Link>
             })}
         </div>
     );

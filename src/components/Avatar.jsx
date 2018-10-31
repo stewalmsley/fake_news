@@ -17,7 +17,7 @@ class Avatar extends Component {
     }
 };
     Avatar.propTypes = {
-       url: PropTypes.string.isRequired
+       avatar_url: PropTypes.string.isRequired
 }
 
 export default Avatar

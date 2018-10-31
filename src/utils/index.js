@@ -26,7 +26,7 @@ export const addKeysToComments = (comments => {
     })
 })
 
-const addCroppedBody = ((str, n) => {
+export const addCroppedBody = ((str, n) => {
     let croppedBody = str.split(' ').slice(0, n).join(' ');
     if (croppedBody.length < str.length) croppedBody += '...'
     return croppedBody

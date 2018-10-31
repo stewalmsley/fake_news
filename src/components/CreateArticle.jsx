@@ -20,7 +20,7 @@ class CreateArticle extends Component {
                      <select name="topic_slug" onChange={this.handleChange}>
                         <option value="">Choose Topic </option>
                         {topics.map(topic => {
-                            return <option value={topic.slug}>{topic.title}</option>
+                            return <option key={topic._id} value={topic.slug}>{topic.title}</option>
                         })}
                     </select><br></br>
                     <textarea name="title" value={this.state.title} onChange={this.handleChange} placeholder="Title" cols="100" rows="3"></textarea><br></br>
@@ -44,7 +44,6 @@ class CreateArticle extends Component {
         const { topic_slug, body, title } = this.state
         const user_id = this.props.user._id
         const newArticle = { title, body, created_by: user_id}
-        console.log(newArticle)
         api.postArticle(topic_slug, newArticle)
         .then(createdArticle => {
             this.setState({

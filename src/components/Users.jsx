@@ -8,7 +8,7 @@ const Users = props => {
         <div>
             <h6>Trending Users: </h6>
             {users.map(user => {
-                return <Link to={`/users/${user.username}`}><h6>{user.username}</h6></Link>
+                return <Link key={user._id} to={`/users/${user.username}`}><h6>{user.username}</h6></Link>
             })}
         </div>
     );
