@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 class Avatar extends Component {
     state = {
-        url: this.props.avatar_url
+        errorCount: 0
     }
     render() {
-    
-                const { url } = this.state
-        return <div><img src={url}alt="Avatar" onError={this.switchURL} height="100px" width="100px"></img></div> 
+        const { avatar_url } = this.props
+        return <div><img src={avatar_url}alt="Avatar" onError={this.state.errorCount ? null : this.switchURL} height="100px" width="100px"></img></div> 
     }
-    switchURL = () => {
+    switchURL = (event) => {
+        event.target.src= "/dog.jpg"
         this.setState({
-            url: "/dog.jpg"
+            errorCount: 1
         })
     }
 };

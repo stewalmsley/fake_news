@@ -3,21 +3,19 @@ import ArticleSnapshot from './ArticleSnapshot';
 import PropTypes from 'prop-types';
 import * as api from '../api';
 import * as utils from '../utils';
+import Articles from './Articles';
 
 class Topic extends Component {
     state = {
         articles: [],
     }
     render() {
-        const { articles } = this.state;
-        console.log(this.props)
-        return (
-            <div>
-                {articles.map(article => {
-                    return <ArticleSnapshot key={article._id} article={article}></ArticleSnapshot>
-                 })}
-            </div>
-        );
+        const { user } = this.props
+        const { articles } = this.state
+        return <div>
+        <main>   <Articles articles={articles} user={user} />
+          </main>
+      </div>
     }
     componentDidMount() {
         this.fetchArticles();

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../api';
 import * as utils from '../utils';
-import CommentSnapshot from './CommentSnapshot';
+import Comment from './Comment';
 import AddComment from './AddComment';
 
 class ArticleComments extends Component {
@@ -19,9 +19,8 @@ class ArticleComments extends Component {
         {loaded && <h6>Comments ({commentCount}): </h6>}
         {comments.map(comment => {
             return ( 
-            <div>
-            <CommentSnapshot deleteError={deleteError} user_id={user_id} key={comment._id} comment={comment} deleteComment={this.deleteComment}></CommentSnapshot></div>
-            )
+            <Comment deleteError={deleteError} user_id={user_id} 
+            key={comment._id} comment={comment}></Comment>)
         })}
         </div>   
         );
@@ -30,12 +29,12 @@ class ArticleComments extends Component {
         this.fetchArticleComments();
       }
 
-    fetchArticleComments() {
+    fetchArticleComments = () => {
         api.getArticleComments(this.props.articleId)
         .then(comments => {
             const sortedCroppedComments = utils.sortArticlesOrComments(comments, "votes");
             this.setState ({
-                comments: sortedCroppedComments,
+                comments: sortedCroppedComments
             })
         })
     }
@@ -50,17 +49,6 @@ class ArticleComments extends Component {
             this.setState({
                 comments: updatedComments, 
             })
-        })
-    }
-
-    deleteComment = (commentId) => {
-        api.deleteComment(commentId)
-        .then(status => {
-        if (status < 300) this.fetchArticleComments();
-        else this.setState({
-            deleteError: true
-        })
-        
         })
     }
 }

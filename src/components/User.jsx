@@ -4,25 +4,27 @@ import Avatar from './Avatar'
 import PropTypes from 'prop-types';
 import * as api from '../api';
 import * as utils from '../utils';
+import Articles from './Articles';
 
 class User extends Component {
     state = {
         user: {},
         comments: [],
         articles: [],
-        loaded: false
+        loaded: false, 
+        selected: "articles"
     }
     render() {
-        const { loaded, articles } = this.state;
-        const { name, avatar_url, username } = this.state.user;
+        const { loaded, articles, user } = this.state;
+        const { name, avatar_url, username } = user;
         return (
-            <div>
+            <main>
                 {loaded && <h2>{name} ({username})</h2>}
                 {loaded && <Avatar avatar_url={avatar_url}></Avatar>}
-                {loaded && articles.map(article => {
-                    return <ArticleSnapshot key={article._id} article={article}></ArticleSnapshot>
-                 })}
-            </div>
+                <div>
+                  <Articles articles={articles} user={user} />
+                </div>
+            </main>
         );
     }
     componentDidMount() {

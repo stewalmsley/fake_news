@@ -65,3 +65,15 @@ export const deleteArticle = async (articleId) => {
     data.comment.croppedBody = utils.addCroppedBody(data.comment.body, 20)
     return data.comment
   } 
+
+  export const patchCommentVotes = async(commentId, newVotes) => {
+    const direction = newVotes === 1 ? "up" : "down"
+    const { status } = await axios.patch(`${BASE_URL}/comments/${commentId}?vote=${direction}`)
+    return status
+  }
+
+  export const patchArticleVotes = async(articleId, newVotes) => {
+    const direction = newVotes === 1 ? "up" : "down"
+    const { status } = await axios.patch(`${BASE_URL}/articles/${articleId}?vote=${direction}`)
+    return status
+  }
