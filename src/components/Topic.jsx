@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import * as api from '../api';
 import * as utils from '../utils';
 import Articles from './Articles';
+import { navigate } from '@reach/router';
 
 class Topic extends Component {
     state = {
@@ -36,6 +37,10 @@ class Topic extends Component {
                 articles : sortedArticles,
             })
         })
+        .catch(err => {
+            navigate('/error', { replace: true, state: {
+                code: 404}})
+          })
     }
 }
 

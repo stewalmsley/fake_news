@@ -7,8 +7,8 @@ const Hello = props => {
     const { user, loaded } = props;
     return (
         <div>
-            <h4> Hello <Link to={`/users/${user.username}`}>{user.username}</Link></h4>
-            {loaded && <Link to={`/users/${user.username}`}><Avatar avatar_url={user.avatar_url}></Avatar></Link>}
+            <h4> Hello <Link to={`/users/${user.username}/articles`}>{user.username}</Link></h4>
+            {loaded && <Link to={`/users/${user.username}/articles`}><Avatar avatar_url={user.avatar_url}></Avatar></Link>}
         </div>
     );
 };

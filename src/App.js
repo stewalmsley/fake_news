@@ -7,6 +7,7 @@ import User from './components/User.jsx';
 import FullArticle from './components/FullArticle.jsx';
 import CreateArticle from './components/CreateArticle.jsx';
 import Sidebar from './components/Sidebar.jsx';
+import Failing from './components/Failing.jsx';
 import { Router } from '@reach/router';
 import { Link } from '@reach/router';
 
@@ -29,9 +30,10 @@ class App extends Component {
       <Router>
       <Home user={user} path="/" />
       <FullArticle user={user} path="/articles/:articleId" />
-      <User user={user} path="/users/:username" />
+      <User user={user} path="/users/:username/:content" />
       <Topic user={user} path="/topics/:topic_slug/articles" />
       <CreateArticle topics={topics} user={user} path="/create"/>
+      <Failing default/>
       </Router>
       <section><Sidebar user={user} users={users} topics={topics} loaded={loaded}/></section>
         <footer></footer>

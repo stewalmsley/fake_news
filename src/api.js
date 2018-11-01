@@ -13,6 +13,7 @@ export const getArticles = async (topic) =>{
 export const getArticle = async (articleId) => {
     const { data } = await axios.get(`${BASE_URL}/articles/${articleId}`);
     data.articleWithCommentCount.topic = utils.createTopicKey(data.articleWithCommentCount);
+    data.articleWithCommentCount.created_at = utils.convertTime(data.articleWithCommentCount)
     return data.articleWithCommentCount;
   }
 
@@ -35,6 +36,7 @@ export const deleteArticle = async (articleId) => {
   export const getUser = async (username) => {
     const { data } = await axios.get(`${BASE_URL}/users/${username}`);
     data.articles = utils.addKeysToArticles(data.articlesWithCommentCounts)
+    data.comments = utils.addKeysToComments(data.comments)
     return data;
   }
 

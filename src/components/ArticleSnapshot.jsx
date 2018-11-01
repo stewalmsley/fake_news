@@ -9,7 +9,7 @@ const ArticleSnapshot = ({ article, user }) => {
     return (
         <div className="article">
         <span className="topic"><Link to={`/topics/${belongs_to}/articles`}>{topic} </Link></span>
-        {created_by && (<span className="author"><Link to={`/users/${created_by.username}`}>{created_by.name} </Link></span>)}
+        {created_by && (<span className="author"><Link to={`/users/${created_by.username}/articles`}>{created_by.name} </Link></span>)}
             <Link to={`/articles/${article._id}`}>
                 {" "}{title} <br></br>
                 <p>{created_at}{croppedBody}<br></br> </p>

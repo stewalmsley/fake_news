@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Avatar extends Component {
     state = {
-        errorCount: 0
+        imgError: false
     }
     render() {
         const { avatar_url } = this.props
@@ -12,7 +12,7 @@ class Avatar extends Component {
     switchURL = (event) => {
         event.target.src= "/dog.jpg"
         this.setState({
-            errorCount: 1
+            imgError: true
         })
     }
 };

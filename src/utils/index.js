@@ -1,3 +1,7 @@
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
+
 export const cropArticleOrCommentBodies = (arr, words) => {
     return arr.map(text => {
         const body = text.body.split(' ').slice(0, words).join(' ');
@@ -14,15 +18,17 @@ export const sortArticlesOrComments = (arr, sortOn) => {
 export const addKeysToArticles = (articles => {
     return articles.map(article => {
         const topic = createTopicKey(article);
+        const created_at = convertTime(article)
         const croppedBody = addCroppedBody(article.body, 40);
-        return {...article, topic, croppedBody}
+        return {...article, topic, croppedBody, created_at}
     })
 })
 
 export const addKeysToComments = (comments => {
     return comments.map(comment => {
+        const created_at = convertTime(comment)
         const croppedBody = addCroppedBody(comment.body, 20)
-        return {...comment, croppedBody}
+        return {...comment, croppedBody, created_at}
     })
 })
 
@@ -34,4 +40,8 @@ export const addCroppedBody = ((str, n) => {
 
 export const createTopicKey = (article => {
     return article.belongs_to[0].toUpperCase() + article.belongs_to.substring(1);
+})
+
+export const convertTime = (articleOrComment => {
+    return dayjs(articleOrComment.created_at).fromNow()
 })

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../api';
 import * as utils from '../utils';
-import Comment from './Comment';
+import Comments from './Comments';
 import AddComment from './AddComment';
 
 class ArticleComments extends Component {
@@ -11,17 +11,14 @@ class ArticleComments extends Component {
         deleteError: false
     };
     render() {
-        const { loaded, commentCount, user_id } = this.props;
+        const { loaded, commentCount, user } = this.props;
         const { comments, deleteError } = this.state;
+        if (!loaded) return null
     return (
          <div className="articleComments">
-         {loaded && <AddComment addComment={this.addComment}></AddComment>}
-        {loaded && <h6>Comments ({commentCount}): </h6>}
-        {comments.map(comment => {
-            return ( 
-            <Comment deleteError={deleteError} user_id={user_id} 
-            key={comment._id} comment={comment}></Comment>)
-        })}
+         <AddComment addComment={this.addComment}></AddComment>
+        <h6>Comments ({commentCount}): </h6>
+        <Comments comments={comments} user={user} ></Comments>
         </div>   
         );
     }

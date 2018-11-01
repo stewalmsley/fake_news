@@ -4,7 +4,8 @@ import * as api from '../api';
 import { Link } from '@reach/router';
 import ArticleComments from './ArticleComments';
 import Delete from './Delete';
-import Vote from './Vote'
+import Vote from './Vote';
+import { navigate } from '@reach/router';
 
 class FullArticle extends Component {
     state = {
@@ -23,7 +24,7 @@ class FullArticle extends Component {
         {loaded && <h2> {created_by.name} {created_at}  </h2>}
         {loaded && <Vote user_id={user._id} author_id ={created_by._id} updateVotes={this.updateVotes} votes={votes}></Vote>}
         {loaded && <p> {body}  </p>}
-        {loaded && <ArticleComments loaded={loaded} commentCount={commentCount} articleId={articleId} user_id={user._id}></ArticleComments>}
+        {loaded && <ArticleComments loaded={loaded} commentCount={commentCount} articleId={articleId} user={user}></ArticleComments>}
         </div>
     }
     componentDidMount() {
@@ -38,6 +39,10 @@ class FullArticle extends Component {
                 loaded: true
             })
         })
+        .catch(err => {
+            navigate('/error', { replace: true, state: {
+                code: 404}})
+          })
     }
 
     deleteArticle = () => {

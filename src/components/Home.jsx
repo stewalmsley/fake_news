@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Articles from './Articles';
 import * as api from '../api';
 import * as utils from '../utils';
+import { navigate } from '@reach/router';
 
 class Home extends Component {
   state = {
@@ -26,6 +27,10 @@ class Home extends Component {
           this.setState ({
               articles: sortedArticles
           })
+      })
+      .catch(err => {
+        navigate('/error', { replace: true, state: {
+            code: 404}})
       })
   }
 }
