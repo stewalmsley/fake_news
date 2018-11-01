@@ -5,6 +5,7 @@ import * as api from '../api';
 import * as utils from '../utils';
 import Articles from './Articles';
 import { navigate } from '@reach/router';
+import Sort from './Sort'
 
 class Topic extends Component {
     state = {
@@ -14,6 +15,7 @@ class Topic extends Component {
         const { user } = this.props
         const { articles } = this.state
         return <div>
+            <Sort content="articles" updateSort={this.updateSort}></Sort>
         <main>   <Articles articles={articles} user={user} />
           </main>
       </div>
@@ -42,6 +44,12 @@ class Topic extends Component {
                 code: 404}})
           })
     }
+    updateSort = event => {
+        const sortedArticles = utils.sortArticlesOrComments(this.state.articles, event.target.value)
+        this.setState({
+            articles: sortedArticles
+        })
+      }
 }
 
 Topic.propTypes = {

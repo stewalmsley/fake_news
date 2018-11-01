@@ -9,6 +9,7 @@ import { Router } from '@reach/router';
 import { Link } from '@reach/router';
 import Comments from './Comments.jsx';
 import { navigate } from '@reach/router';
+import Sort from './Sort'
 
 
 
@@ -32,6 +33,7 @@ class User extends Component {
                 <Link to={`/users/${username}/articles`}>Articles</Link>{" "}
                 <Link to={`/users/${username}/comments`}>Comments</Link>
                 <div>
+                <Sort content={content} updateSort={this.updateSort}></Sort>
                   {content === "articles" && <Articles articles={articles} user={user} />}
                   {content === "comments" && <Comments source="user" comments={comments} user_id={user._id} />}
                 </div>
@@ -66,6 +68,14 @@ class User extends Component {
                 code: 404}})
           })
     }
+
+    updateSort = event => {
+        const items = this.props.content
+        const sortedItems = utils.sortArticlesOrComments(this.state[items], event.target.value)
+        this.setState({
+            [items]: sortedItems
+        })
+      }
 }
 
 User.propTypes = {

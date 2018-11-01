@@ -10,7 +10,14 @@ export const cropArticleOrCommentBodies = (arr, words) => {
 }
 
 export const sortArticlesOrComments = (arr, sortOn) => {
-    return arr.sort((text1, text2) => {
+    if (sortOn === "created_at") { 
+        return [...arr].sort((text1, text2) => {
+            const diff = dayjs(text1.created_at).diff(dayjs(text2.created_at), 'days')
+            console.log(diff)
+            return diff > 0 ? -1 : 1
+        })
+    }
+    return [...arr].sort((text1, text2) => {
         return text2[sortOn] - text1[sortOn]
     })
 }
@@ -18,17 +25,17 @@ export const sortArticlesOrComments = (arr, sortOn) => {
 export const addKeysToArticles = (articles => {
     return articles.map(article => {
         const topic = createTopicKey(article);
-        const created_at = convertTime(article)
+        const dayjsDate = convertTime(article)
         const croppedBody = addCroppedBody(article.body, 40);
-        return {...article, topic, croppedBody, created_at}
+        return {...article, topic, croppedBody, dayjsDate}
     })
 })
 
 export const addKeysToComments = (comments => {
     return comments.map(comment => {
-        const created_at = convertTime(comment)
+        const dayjsDate = convertTime(comment)
         const croppedBody = addCroppedBody(comment.body, 20)
-        return {...comment, croppedBody, created_at}
+        return {...comment, croppedBody, dayjsDate}
     })
 })
 

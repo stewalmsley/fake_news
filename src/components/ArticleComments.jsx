@@ -4,6 +4,7 @@ import * as api from '../api';
 import * as utils from '../utils';
 import Comments from './Comments';
 import AddComment from './AddComment';
+import Sort from './Sort'
 
 class ArticleComments extends Component {
     state = {
@@ -18,6 +19,7 @@ class ArticleComments extends Component {
          <div className="articleComments">
          <AddComment addComment={this.addComment}></AddComment>
         <h6>Comments ({commentCount}): </h6>
+        <Sort updateSort={this.updateSort}></Sort>
         <Comments comments={comments} user={user} ></Comments>
         </div>   
         );
@@ -48,6 +50,13 @@ class ArticleComments extends Component {
             })
         })
     }
+
+    updateSort = event => {
+        const sortedComments = utils.sortArticlesOrComments(this.state.comments, event.target.value)
+        this.setState({
+            comments: sortedComments
+        })
+      }
 }
 
 ArticleComments.propTypes = {

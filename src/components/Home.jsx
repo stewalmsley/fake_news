@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import Articles from './Articles';
+import Sort from './Sort'
 import * as api from '../api';
 import * as utils from '../utils';
 import { navigate } from '@reach/router';
 
 class Home extends Component {
   state = {
-      articles: []
+      articles: [], 
   };
   render() {
       const { user } = this.props
       const { articles } = this.state
       return <div>
-      <main>   <Articles articles={articles} user={user} />
+      <main>  
+          <Sort content="articles" updateSort={this.updateSort}></Sort>
+           <Articles articles={articles} user={user} />
         </main>
     </div>
   }
@@ -23,7 +26,7 @@ class Home extends Component {
   fetchArticles() {
       api.getArticles()
       .then(articles => {
-          const sortedArticles = utils.sortArticlesOrComments(articles, "commentCount");
+          const sortedArticles = utils.sortArticlesOrComments(articles, this.state.sort);
           this.setState ({
               articles: sortedArticles
           })
@@ -32,6 +35,13 @@ class Home extends Component {
         navigate('/error', { replace: true, state: {
             code: 404}})
       })
+  }
+
+  updateSort = event => {
+    const sortedArticles = utils.sortArticlesOrComments(this.state.articles, event.target.value)
+    this.setState({
+        articles: sortedArticles
+    })
   }
 }
 

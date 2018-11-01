@@ -17,7 +17,7 @@ class App extends Component {
     user: {}, 
     topics: [],
     users: [],
-    loaded: false
+    loaded: false, 
   }
   render() {
     const { user, loaded, topics, users } = this.state
@@ -26,7 +26,8 @@ class App extends Component {
         <header className="App-header">
         <Link to="/"><h1>Fake News</h1></Link>
         </header> 
-        <nav></nav>
+        <nav>
+        </nav>
       <Router>
       <Home user={user} path="/" />
       <FullArticle user={user} path="/articles/:articleId" />
