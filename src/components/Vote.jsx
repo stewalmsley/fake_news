@@ -8,11 +8,18 @@ class Vote extends Component {
     render() {
         const { votes, user_id, author_id } = this.props
         const { voteChange } = this.state
+        if (user_id === author_id) return <span className="votes"> Votes: {votes} </span>
+        if (voteChange !== 0) return (
+            <div>
+                <button name="Reset" onClick={() => this.handleVote(0)}>Reset</button>
+                <span className="votes"> {votes + voteChange} </span>
+            </div>
+        )
         return (
             <div>
-                <button disabled={voteChange === 1 || user_id === author_id} name="Up" onClick={() => this.handleVote(1)}>Vote Up</button>
+                <button name="Up" onClick={() => this.handleVote(1)}>Vote Up</button>
                 <span className="votes"> {votes + voteChange} </span>
-                <button disabled={voteChange === -1 || user_id === author_id} name="Down" onClick={() => this.handleVote(-1)}>Vote Down</button>
+                <button name="Down" onClick={() => this.handleVote(-1)}>Vote Down</button>
             </div>
         );
     }

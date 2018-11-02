@@ -120,7 +120,8 @@ p {
 }
 
 .votes {
-  color: grey
+  color: grey;
+  font-size: 15px
 }
 
 .noComments {
