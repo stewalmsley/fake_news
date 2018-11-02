@@ -52,3 +52,8 @@ export const createTopicKey = (article => {
 export const convertTime = (articleOrComment => {
     return dayjs(articleOrComment.created_at).fromNow()
 })
+
+export const trendingAuthors = (authors) => {
+    return authors.sort((author1, author2) => author2.receivedCommentCount - 
+    author1.receivedCommentCount).slice(0, 3)
+}

@@ -6,8 +6,10 @@ const BASE_URL = `https://steve-news.herokuapp.com/api`;
 export const getArticles = async (topic) =>{
   const URL = topic ? `${BASE_URL}/topics/${topic}/articles` : `${BASE_URL}/articles`;
   const { data } = await axios.get(URL);
-  data.articles = utils.addKeysToArticles(data.articlesWithCommentCounts)
-  return data.articles
+  const articles = utils.addKeysToArticles(data.articlesWithCommentCounts)
+  const topics = data.topicsAndAuthors.topics
+  const trendingAuthors = utils.trendingAuthors(data.topicsAndAuthors.authors)
+  return { articles, topics, trendingAuthors}
 }
 
 export const getArticle = async (articleId) => {

@@ -10,13 +10,16 @@ class Home extends Component {
   state = {
       articles: [], 
       loaded: false, 
+      trendingAuthors: []
   };
   render() {
       const { user } = this.props
-      const { articles, loaded } = this.state
+      const { articles, loaded, trendingAuthors } = this.state
       if (!loaded) return <div className="loader"></div>
       return <div>
       <main>  
+          {trendingAuthors[0].receivedCommentCount}
+          {trendingAuthors[0].name}
           <Sort content="articles" updateSort={this.updateSort}></Sort>
            <Articles articles={articles} user={user} />
         </main>
@@ -28,10 +31,11 @@ class Home extends Component {
 
   fetchArticles() {
       api.getArticles()
-      .then(articles => {
+      .then(({ articles, trendingAuthors } ) => {
           const sortedArticles = utils.sortArticlesOrComments(articles, "commentCount");
           this.setState ({
               articles: sortedArticles, 
+              trendingAuthors,
               loaded: true
           })
       })
