@@ -18,8 +18,8 @@ class Comment extends Component {
         const author_id = source === "user" ? userProfile._id : comment.created_by._id
         return (
             <div> 
-            {user_id === author_id && <Delete key={comment._id} commentId={comment._id} deleteItem={this.deleteComment}></Delete>}
-            {deleteError && <h5>Unable to Delete</h5>}
+            {user_id === author_id && <Delete key={comment._id} id={comment._id} deleteItem={this.deleteComment}></Delete>}
+            {deleteError && <h5>Encountered and Error trying to Delete </h5>}
             <button className="comment" onClick={() => this.expandComment()}><h6><Link key={comment._id} to={`/users/${comment.created_by.username}`}>{comment.created_by.name }</Link> 
             {comment.dayjsDate}</h6>
              <p> {deleted && "comment deleted"}  {(!deleted && !expand) && comment.croppedBody} {(!deleted && expand) && comment.body} </p> </button>

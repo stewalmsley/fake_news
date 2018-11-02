@@ -16,15 +16,16 @@ class FullArticle extends Component {
     };
     render() {
         const { loaded, deleted } = this.state;
-        const { topic, title, dayjsDate, created_by, belongs_to, body, commentCount, votes} = this.state.article;
+        const { _id, topic, title, dayjsDate, created_by, belongs_to, body, commentCount, votes} = this.state.article;
         const { user, articleId, location } = this.props;
         if (!loaded) return <div className="loader"/>
+        if (deleted) return (<div> <h4>Article Deleted</h4>
+        <Link to={`/users/${user.username}/articles`}>View Your Profile</Link> </div>)
         const newArticle = location.state._id ? true: false
         return <div>
-        {(deleted) && <h5>Article Deleted</h5> }
         {(location.state._id) && <h5>Article Created</h5> }
         <h3><span className="topic"><Link to={`/topics/${belongs_to}/articles`}>{topic}: </Link></span> {title}</h3>
-        <Delete newArticle={newArticle} user_id={user._id} author_id={created_by._id} deleteItem={this.deleteArticle}></Delete> 
+        <Delete id={_id} newArticle={newArticle} user_id={user._id} author_id={created_by._id} deleteItem={this.deleteArticle}></Delete> 
         <div className="author"><Link to={`/users/${created_by.username}/articles`}>{created_by.name} </Link></div>
         <div className="date">{dayjsDate}</div>
         <p> {body}  </p>
@@ -60,8 +61,8 @@ class FullArticle extends Component {
         }
     }
 
-    deleteArticle = () => {
-        api.deleteArticle(this.props.articleId)
+    deleteArticle = (id) => {
+        api.deleteArticle(id)
         .then(status => {
             if (status < 300)
             this.setState({
