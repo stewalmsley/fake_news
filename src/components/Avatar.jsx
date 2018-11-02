@@ -7,7 +7,7 @@ class Avatar extends Component {
     }
     render() {
         const { avatar_url, height, width } = this.props
-        return <div><img src={avatar_url}alt="Avatar" onError={this.state.errorCount ? null : this.switchURL} height={height} width={width}></img></div> 
+        return <div><img src={avatar_url}alt="Avatar" onError={this.state.imgError ? null : this.switchURL} height={height} width={width}></img></div> 
     }
     switchURL = (event) => {
         event.target.src= "/dog.jpg"

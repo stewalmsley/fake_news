@@ -4,7 +4,7 @@
   font-size: 22px;
   display: grid;
   grid-template-columns: 1fr 3.9fr;
-  grid-template-rows: 15% 5% 10fr 10fr;
+  grid-template-rows: 15% 5% 10fr 5%;
   grid-template-areas: 
   'header header'
   'sidebar nav'
