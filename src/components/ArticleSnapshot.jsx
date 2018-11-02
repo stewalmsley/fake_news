@@ -4,18 +4,20 @@ import { Link } from '@reach/router';
 import Vote from './Vote';
 import * as api from '../api';
 
-const ArticleSnapshot = ({ article, user }) => {
+const ArticleSnapshot = ({ article, user, source, userProfile }) => {
     const { _id, title, dayjsDate, created_by, croppedBody, commentCount, votes, topic, belongs_to } = article;
+    const author_id = source === "user" ? userProfile._id : created_by._id
     return (
         <div className="article">
-        <span className="topic"><Link to={`/topics/${belongs_to}/articles`}>{topic} </Link></span>
-        {created_by && (<span className="author"><Link to={`/users/${created_by.username}/articles`}>{created_by.name} </Link></span>)}
+        {source!== "user" && (<span className="author"><Link to={`/users/${created_by.username}/articles`}>{created_by.name} </Link></span>)}
             <Link to={`/articles/${article._id}`}>
                 {" "}{title} <br></br>
-                <p>{dayjsDate}{croppedBody}<br></br> </p>
-                <h6>Comments: {commentCount}</h6>
-            </Link>
-    {(user && created_by) && <Vote user_id={user._id} author_id ={created_by._id} id={_id} updateVotes={updateVotes} votes={votes}></Vote>} 
+                <div className="date">{dayjsDate}</div>
+                <p>{croppedBody}<br></br> </p>
+                <div className="stats"><Link to={`/topics/${belongs_to}/articles`}>{topic} </Link>
+                Comments: {commentCount}</div>
+                </Link>
+    <Vote user_id={user._id} author_id ={author_id} id={_id} updateVotes={updateVotes} votes={votes}></Vote>
         </div>
     );
 };

@@ -10,8 +10,8 @@ class Vote extends Component {
         const { voteChange } = this.state
         return (
             <div>
-                <h6>Votes: {votes + voteChange}</h6>
                 <button disabled={voteChange === 1 || user_id === author_id} name="Up" onClick={() => this.handleVote(1)}>Vote Up</button>
+                <span className="votes"> {votes + voteChange} </span>
                 <button disabled={voteChange === -1 || user_id === author_id} name="Down" onClick={() => this.handleVote(-1)}>Vote Down</button>
             </div>
         );

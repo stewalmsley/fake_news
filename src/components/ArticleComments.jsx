@@ -15,11 +15,16 @@ class ArticleComments extends Component {
         const { commentCount, user } = this.props;
         const { comments, loaded} = this.state;
         if (!loaded) return <div className="loader"></div>
+        if (!comments.length) return (
+        <div>
+            <AddComment addComment={this.addComment}></AddComment>
+            <div className="noComments"> No Comments </div>
+        </div>)
     return (
          <div className="articleComments">
          <AddComment addComment={this.addComment}></AddComment>
-        <h6>Comments ({commentCount}): </h6>
-        <Sort updateSort={this.updateSort}></Sort>
+        Comments ({commentCount}):
+         <Sort updateSort={this.updateSort}></Sort>
         <Comments comments={comments} user={user} ></Comments>
         </div>   
         );
@@ -31,9 +36,14 @@ class ArticleComments extends Component {
     fetchArticleComments = () => {
         api.getArticleComments(this.props.articleId)
         .then(comments => {
-            const sortedCroppedComments = utils.sortArticlesOrComments(comments, "votes");
+            const sortedCroppedComments = comments.length ? utils.sortArticlesOrComments(comments, "votes") : comments;
             this.setState ({
                 comments: sortedCroppedComments, 
+                loaded: true
+            })
+        })
+        .catch(err => {
+            this.setState({
                 loaded: true
             })
         })
@@ -41,8 +51,8 @@ class ArticleComments extends Component {
     
     addComment = (newCommentBody) => {
         const { comments } = this.state
-        const { articleId,  user_id} = this.props
-        const newComment = { body: newCommentBody, created_by: user_id}
+        const { articleId,  user} = this.props
+        const newComment = { body: newCommentBody, created_by: user._id}
         api.postComment(articleId, newComment)
         .then(addedComment => {
             const updatedComments = [addedComment,...comments]

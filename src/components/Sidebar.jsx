@@ -1,20 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Hello from './Hello';
 import Topics from './Topics';
 import Users from './Users';
 import { Link } from '@reach/router';
 
-const Sidebar = props => {
-    const { user, loaded, topics, users} = props;
+const Sidebar = ({ topics, users}) => {
     return (
         <div>
-            <Hello user={user} loaded={loaded}></Hello>
-            <Link to="/create">Create Article</Link>
+            {/* <Link to="/create">Create Article</Link> */}
             <Topics topics={topics}></Topics>
             <Users users={users}></Users>
-            
-            
         </div>
     );
 };

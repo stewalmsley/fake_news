@@ -4,22 +4,44 @@
   font-size: 22px;
   display: grid;
   grid-template-columns: 1fr 3.9fr;
-  grid-template-rows: 10% 10% 10fr 10%;
+  grid-template-rows: 15% 5% 10fr 10fr;
   grid-template-areas: 
-  'sidebar header'
+  'header header'
   'sidebar nav'
   'sidebar main'
   'footer footer'
 }
 
+.App-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
 header {
   grid-area: header;
-  text-align: right;
-  width: 90%
+  position: relative
+}
+
+.hello {
+  font-size: 15px;
+  margin-top: 2%; 
+}
+
+img {
+  border-radius: 50%;
 }
 
 nav {
   grid-area: nav;
+  text-align: right;
+  margin-right: 20%
+}
+
+.create {
+  background-color: lightcyan;
+  font-size: 15px
 }
 
 section {
@@ -39,15 +61,19 @@ a:visited, a:link {
   text-decoration: none;
 }
 
-.article {
-  background-color: lightblue;
+.article, .article p {
+  background-color: whitesmoke;
   width: 99%;
-  border: 1px black solid;
+  border: 1px darkgrey;
   margin-bottom: 1%;
+  color: grey
 }
 
-.readMore {
-  color: lavenderblush
+.stats, .stats a {
+  font-size: 15px;
+  display: flex;
+  justify-content: space-around;
+  color: dimgray
 }
 
 .author a {
@@ -74,3 +100,35 @@ p {
   100% { transform: rotate(360deg); }
 }
 
+.sort {
+  text-align: left;
+  margin-left: 5%;
+  margin-bottom: .5%;
+  font-size: 20px
+}
+
+.date {
+  color: dimgray;
+  font-size: 15px
+}
+
+.userContentControl {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 2.5%;
+  font-size: 15px;
+}
+
+.votes {
+  color: grey
+}
+
+.noComments {
+  color: grey;
+  margin-top: 20px;
+  font-size: 15px
+}
+
+h3 {
+  margin-bottom: .5%;
+}

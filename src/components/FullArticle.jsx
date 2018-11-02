@@ -19,13 +19,14 @@ class FullArticle extends Component {
         const { user, articleId } = this.props;
         if (!loaded) return <div className="loader"/>
         return <div>
-        {(loaded && created_by._id === user._id) && <Delete deleteItem={this.deleteArticle}></Delete> }
         {(deleted) && <h5>Article Deleted</h5> }
-        {loaded && <h1><span className="topic"><Link to={`/topics/${belongs_to}/articles`}>{topic}: </Link></span> {title}</h1>}
-        {loaded && <h2> {created_by.name} {dayjsDate}  </h2>}
-        {loaded && <Vote user_id={user._id} author_id ={created_by._id} updateVotes={this.updateVotes} votes={votes}></Vote>}
-        {loaded && <p> {body}  </p>}
-        {loaded && <ArticleComments loaded={loaded} commentCount={commentCount} articleId={articleId} user={user}></ArticleComments>}
+        <h3><span className="topic"><Link to={`/topics/${belongs_to}/articles`}>{topic}: </Link></span> {title}</h3>
+        {created_by._id === user._id && <Delete deleteItem={this.deleteArticle}></Delete> }
+        <div className="author"><Link to={`/users/${created_by.username}/articles`}>{created_by.name} </Link></div>
+        <div className="date">{dayjsDate}</div>
+        <p> {body}  </p>
+        <Vote user_id={user._id} author_id ={created_by._id} updateVotes={this.updateVotes} votes={votes}></Vote>
+        <ArticleComments commentCount={commentCount} articleId={articleId} user={user}></ArticleComments>
         </div>
     }
     componentDidMount() {

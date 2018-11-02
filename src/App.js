@@ -8,6 +8,7 @@ import FullArticle from './components/FullArticle.jsx';
 import CreateArticle from './components/CreateArticle.jsx';
 import Sidebar from './components/Sidebar.jsx';
 import Failing from './components/Failing.jsx';
+import Hello from './components/Hello';
 import { Router } from '@reach/router';
 import { Link } from '@reach/router';
 
@@ -21,12 +22,15 @@ class App extends Component {
   }
   render() {
     const { user, loaded, topics, users } = this.state
+    if (!loaded) return <div className="loader"></div>
     return (
       <div className="App">
         <header className="App-header">
-        <Link to="/"><h1>Fake News</h1></Link>
+        <Link to="/"><h2 className="fakeNews">Fake News</h2></Link>
+        <Hello user={user} loaded={loaded}></Hello>
         </header> 
         <nav>
+        {loaded && <Link to="/create"><button className="create">Create Article</button></Link>}
         </nav>
       <Router>
       <Home user={user} path="/" />

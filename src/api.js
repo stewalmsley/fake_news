@@ -13,7 +13,7 @@ export const getArticles = async (topic) =>{
 export const getArticle = async (articleId) => {
     const { data } = await axios.get(`${BASE_URL}/articles/${articleId}`);
     data.articleWithCommentCount.topic = utils.createTopicKey(data.articleWithCommentCount);
-    data.articleWithCommentCount.created_at = utils.convertTime(data.articleWithCommentCount)
+    data.articleWithCommentCount.dayjsDate = utils.convertTime(data.articleWithCommentCount)
     return data.articleWithCommentCount;
   }
 
