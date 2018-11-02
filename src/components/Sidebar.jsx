@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Topics from './Topics';
 import Users from './Users';
-import { Link } from '@reach/router';
 
 const Sidebar = ({ topics, users}) => {
     return (
         <div>
-            {/* <Link to="/create">Create Article</Link> */}
             <Topics topics={topics}></Topics>
             <Users users={users}></Users>
         </div>
@@ -16,7 +14,7 @@ const Sidebar = ({ topics, users}) => {
 
 Sidebar.propTypes = {
     user: PropTypes.object.isRequired, 
-    loaded: PropTypes.bool.isRequired
+    topics: PropTypes.array.isRequired
 };
 
 export default Sidebar;

@@ -13,10 +13,9 @@ const ArticleSnapshot = ({ article, user, source, userProfile }) => {
             <Link to={`/articles/${article._id}`}>
                 {" "}{title} <br></br>
                 <div className="date">{dayjsDate}</div>
-                <p>{croppedBody}<br></br> </p>
-                <div className="stats"><Link to={`/topics/${belongs_to}/articles`}>{topic} </Link>
-                Comments: {commentCount}</div>
-                </Link>
+                <p>{croppedBody}<br></br> </p></Link>
+                <div className="stats"><Link to={`/topics/${belongs_to}/articles`}>{topic}</Link>
+                <Link to={`/articles/${article._id}`}>Comments: {commentCount}</Link></div>
     <Vote user_id={user._id} author_id ={author_id} id={_id} updateVotes={updateVotes} votes={votes}></Vote>
         </div>
     );

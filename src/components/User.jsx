@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import ArticleSnapshot from './ArticleSnapshot';
 import Avatar from './Avatar'
 import PropTypes from 'prop-types';
 import * as api from '../api';
 import * as utils from '../utils';
 import Articles from './Articles';
-import { Router } from '@reach/router';
 import { Link } from '@reach/router';
 import Comments from './Comments.jsx';
 import { navigate } from '@reach/router';
 import Sort from './Sort'
-
-
 
 class User extends Component {
     state = {
@@ -81,7 +77,8 @@ class User extends Component {
 }
 
 User.propTypes = {
-    username: PropTypes.string
+    username: PropTypes.string, 
+    content: PropTypes.string
 };
 
 export default User;

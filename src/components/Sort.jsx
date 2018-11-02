@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Sort = props => {
-    const { updateSort, content } = props
+const Sort = ({ updateSort, content }) => {
     return (
         <div className ="sort">
             <select onChange={updateSort}>
@@ -15,7 +14,8 @@ const Sort = props => {
 }
 
 Sort.propTypes = {
-
+    updateSort: PropTypes.func.isRequired, 
+    content: PropTypes.string
 };
 
 export default Sort;

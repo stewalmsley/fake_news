@@ -15,7 +15,7 @@ const Failing = ({ location }) => {
 };
 
 Failing.propTypes = {
-    
+    location: PropTypes.object
 };
 
 export default Failing;

@@ -4,6 +4,7 @@ import Sort from './Sort'
 import * as api from '../api';
 import * as utils from '../utils';
 import { navigate } from '@reach/router';
+import PropTypes from 'prop-types';
 
 class Home extends Component {
   state = {
@@ -47,5 +48,9 @@ class Home extends Component {
     })
   }
 }
+
+Home.propTypes = {
+    user: PropTypes.object.isRequired, 
+};
 
 export default Home;

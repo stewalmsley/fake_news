@@ -71,8 +71,8 @@ class ArticleComments extends Component {
 }
 
 ArticleComments.propTypes = {
-    loaded: PropTypes.bool.isRequired,
-    commentCount: PropTypes.number
+    commentCount: PropTypes.number, 
+    user: PropTypes.object.isRequired
 };
 
 export default ArticleComments;

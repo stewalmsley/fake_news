@@ -54,7 +54,10 @@ class Comment extends Component {
 }
 
 Comment.propTypes = {
-    comment: PropTypes.object.isRequired
+    comment: PropTypes.object.isRequired, 
+    user: PropTypes.object.isRequired, 
+    source: PropTypes.string,
+    userProfile: PropTypes.object
 };
 
 export default Comment;

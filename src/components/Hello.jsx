@@ -14,7 +14,6 @@ const Hello = ({ user }) => {
 
 Hello.propTypes = {
     user: PropTypes.object.isRequired, 
-    loaded: PropTypes.bool.isRequired
 };
 
 export default Hello;

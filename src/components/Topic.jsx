@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ArticleSnapshot from './ArticleSnapshot';
 import PropTypes from 'prop-types';
 import * as api from '../api';
 import * as utils from '../utils';
@@ -56,7 +55,8 @@ class Topic extends Component {
 }
 
 Topic.propTypes = {
-    topic_slug: PropTypes.string
+    topic_slug: PropTypes.string, 
+    user: PropTypes.object.isRequired
 };
 
 export default Topic;

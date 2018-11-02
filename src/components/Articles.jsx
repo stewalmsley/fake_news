@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ArticleSnapshot from './ArticleSnapshot';
 
@@ -10,7 +10,9 @@ const Articles = ({ articles, user, source, userProfile}) => {
 
     Articles.propTypes = {
         articles: PropTypes.array.isRequired, 
-        user: PropTypes.object.isRequired
+        user: PropTypes.object.isRequired, 
+        source: PropTypes.string, 
+        userProfile: PropTypes.object
     }; 
     
 export default Articles;
