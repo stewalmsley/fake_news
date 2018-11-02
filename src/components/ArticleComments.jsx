@@ -9,12 +9,12 @@ import Sort from './Sort'
 class ArticleComments extends Component {
     state = {
         comments: [],
-        deleteError: false
+        loaded: false
     };
     render() {
-        const { loaded, commentCount, user } = this.props;
-        const { comments, deleteError } = this.state;
-        if (!loaded) return null
+        const { commentCount, user } = this.props;
+        const { comments, loaded} = this.state;
+        if (!loaded) return <div className="loader"></div>
     return (
          <div className="articleComments">
          <AddComment addComment={this.addComment}></AddComment>
@@ -33,7 +33,8 @@ class ArticleComments extends Component {
         .then(comments => {
             const sortedCroppedComments = utils.sortArticlesOrComments(comments, "votes");
             this.setState ({
-                comments: sortedCroppedComments
+                comments: sortedCroppedComments, 
+                loaded: true
             })
         })
     }

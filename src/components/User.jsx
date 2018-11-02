@@ -25,7 +25,7 @@ class User extends Component {
         const { loaded, articles, user, comments } = this.state;
         const { name, avatar_url, username } = user;
         const { content } = this.props
-        if (!loaded) return null
+        if (!loaded) return <div className="loader"></div>
         return (
             <main>
                 <h2>{name} ({username})</h2>

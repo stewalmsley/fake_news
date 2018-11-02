@@ -8,11 +8,12 @@ import * as api from '../api';
 class Comment extends Component {
     state = {
         expand: false,
-        deleted: false
+        deleted: false, 
+        deleteError: false
     };
     render() {
-        const { comment, user_id, deleteError} = this.props
-        const { expand, deleted } = this.state
+        const { comment, user_id } = this.props
+        const { expand, deleted, deleteError} = this.state
         return (
             <div className="comment"> 
             {user_id === comment.created_by._id && <Delete key={comment._id} commentId={comment._id} deleteItem={this.deleteComment}></Delete>}

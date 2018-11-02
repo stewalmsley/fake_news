@@ -17,6 +17,7 @@ class FullArticle extends Component {
         const { loaded, deleted } = this.state;
         const { topic, title, dayjsDate, created_by, belongs_to, body, commentCount, votes} = this.state.article;
         const { user, articleId } = this.props;
+        if (!loaded) return <div className="loader"/>
         return <div>
         {(loaded && created_by._id === user._id) && <Delete deleteItem={this.deleteArticle}></Delete> }
         {(deleted) && <h5>Article Deleted</h5> }

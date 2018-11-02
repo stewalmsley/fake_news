@@ -8,10 +8,12 @@ import { navigate } from '@reach/router';
 class Home extends Component {
   state = {
       articles: [], 
+      loaded: false, 
   };
   render() {
       const { user } = this.props
-      const { articles } = this.state
+      const { articles, loaded } = this.state
+      if (!loaded) return <div className="loader"></div>
       return <div>
       <main>  
           <Sort content="articles" updateSort={this.updateSort}></Sort>
@@ -26,9 +28,10 @@ class Home extends Component {
   fetchArticles() {
       api.getArticles()
       .then(articles => {
-          const sortedArticles = utils.sortArticlesOrComments(articles, this.state.sort);
+          const sortedArticles = utils.sortArticlesOrComments(articles, "commentCount");
           this.setState ({
-              articles: sortedArticles
+              articles: sortedArticles, 
+              loaded: true
           })
       })
       .catch(err => {

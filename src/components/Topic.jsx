@@ -10,10 +10,12 @@ import Sort from './Sort'
 class Topic extends Component {
     state = {
         articles: [],
+        loaded: false
     }
     render() {
         const { user } = this.props
-        const { articles } = this.state
+        const { articles, loaded} = this.state
+        if (!loaded) return <div className="loader"></div>
         return <div>
             <Sort content="articles" updateSort={this.updateSort}></Sort>
         <main>   <Articles articles={articles} user={user} />
@@ -37,6 +39,7 @@ class Topic extends Component {
             const sortedArticles = utils.sortArticlesOrComments(croppedArticles, "commentCount");
             this.setState ({
                 articles : sortedArticles,
+                loaded: true
             })
         })
         .catch(err => {
