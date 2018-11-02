@@ -11,7 +11,7 @@ class Vote extends Component {
         if (user_id === author_id) return <span className="votes"> Votes: {votes} </span>
         if (voteChange !== 0) return (
             <div>
-                <button name="Reset" onClick={() => this.handleVote(0)}>Reset</button>
+                <button name="Reset" onClick={() => this.handleVote(0)}>Undo</button>
                 <span className="votes"> {votes + voteChange} </span>
             </div>
         )
