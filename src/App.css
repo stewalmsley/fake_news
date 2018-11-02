@@ -124,6 +124,10 @@ p {
   font-size: 15px
 }
 
+.comment {
+  width: 100%
+}
+
 .noComments {
   color: grey;
   margin-top: 20px;

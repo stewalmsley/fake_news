@@ -17,10 +17,10 @@ class Comment extends Component {
         const user_id = user._id
         const author_id = source === "user" ? userProfile._id : comment.created_by._id
         return (
-            <div className="comment"> 
+            <div> 
             {user_id === author_id && <Delete key={comment._id} commentId={comment._id} deleteItem={this.deleteComment}></Delete>}
             {deleteError && <h5>Unable to Delete</h5>}
-            <button onClick={() => this.expandComment()}><h6><Link key={comment._id} to={`/users/${comment.created_by.username}`}>{comment.created_by.name }</Link> 
+            <button className="comment" onClick={() => this.expandComment()}><h6><Link key={comment._id} to={`/users/${comment.created_by.username}`}>{comment.created_by.name }</Link> 
             {comment.dayjsDate}</h6>
              <p> {deleted && "comment deleted"}  {(!deleted && !expand) && comment.croppedBody} {(!deleted && expand) && comment.body} </p> </button>
             <Vote id={comment._id} user_id={user_id} author_id ={author_id} updateVotes={this.updateVotes} votes={comment.votes}></Vote>
