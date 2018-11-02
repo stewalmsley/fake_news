@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as api from '../api';
 
 class Vote extends Component {
     state = {
         voteChange: 0
     }
     render() {
-        const { votes, user_id, author_id } = this.props
+        const { votes, user_id, newArticle, author_id } = this.props
         const { voteChange } = this.state
-        if (user_id === author_id) return <span className="votes"> Votes: {votes} </span>
+        if (newArticle || user_id === author_id) return <span className="votes"> Votes: {votes} </span>
         if (voteChange !== 0) return (
             <div>
                 <button name="Reset" onClick={() => this.handleVote(0)}>Undo</button>
@@ -25,11 +26,11 @@ class Vote extends Component {
     }
 
     handleVote(change) {
-        const { updateVotes } = this.props
+        const { contentType } = this.props
         this.setState({
             voteChange: change
         })
-        updateVotes(this.props.id, change)
+            api.patchVotes(this.props.id, change, contentType)
     }
 }
 

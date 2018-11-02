@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../api';
-import { Link } from '@reach/router';
+import { navigate } from '@reach/router';
 
 class CreateArticle extends Component {
     state = {
         title: '',
         body: '',
         topic_slug: '',
-        createdArticle: {}
     }
     render() {
         const { topics } = this.props
-        const { createdArticle } = this.state
         return (
             <div>
                 <h4>Create Article </h4>
@@ -27,8 +25,6 @@ class CreateArticle extends Component {
                     <textarea required name="body" value={this.state.body} onChange={this.handleChange} placeholder="Write Article here" cols="100" rows="20"></textarea><br></br>
                     <input type="submit" value="Submit"></input>
                 </form>
-                {createdArticle.title && <p>Created article "{createdArticle.title}" at {createdArticle.created_at}.
-                <Link to={`/articles/${createdArticle._id}`}>Click to view</Link> </p>}
             </div>
         );
     }
@@ -46,13 +42,8 @@ class CreateArticle extends Component {
         const newArticle = { title, body, created_by: user_id}
         api.postArticle(topic_slug, newArticle)
         .then(createdArticle => {
-            this.setState({
-                createdArticle, 
-                body: '', 
-                title: '', 
-            })
+            navigate(`/articles/${createdArticle._id}`, {state: createdArticle})
         })
-
     }
 }
 

@@ -23,7 +23,7 @@ class Comment extends Component {
             <button className="comment" onClick={() => this.expandComment()}><h6><Link key={comment._id} to={`/users/${comment.created_by.username}`}>{comment.created_by.name }</Link> 
             {comment.dayjsDate}</h6>
              <p> {deleted && "comment deleted"}  {(!deleted && !expand) && comment.croppedBody} {(!deleted && expand) && comment.body} </p> </button>
-            <Vote id={comment._id} user_id={user_id} author_id ={author_id} updateVotes={this.updateVotes} votes={comment.votes}></Vote>
+            <Vote contentType={"comment"} id={comment._id} user_id={user_id} author_id ={author_id} votes={comment.votes}></Vote>
             </div>
         );
     }
@@ -33,10 +33,6 @@ class Comment extends Component {
         this.setState({
             expand
         })
-    }
-
-    updateVotes = (id, voteChange) => {
-        api.patchCommentVotes(id, voteChange)
     }
 
     deleteComment = (commentId) => {

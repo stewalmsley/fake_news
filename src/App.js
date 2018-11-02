@@ -30,7 +30,7 @@ class App extends Component {
         <Hello user={user} loaded={loaded}></Hello>
         </header> 
         <nav>
-        {loaded && <Link to="/create"><button className="create">Create Article</button></Link>}
+         <Link to="/create"><button className="create">Create Article</button></Link>
         </nav>
       <Router>
       <Home user={user} path="/" />

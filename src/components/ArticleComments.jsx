@@ -15,12 +15,13 @@ class ArticleComments extends Component {
         const { commentCount, user } = this.props;
         const { comments, loaded} = this.state;
         if (!loaded) return <div className="loader"></div>
-        if (!comments.length) return (
+        return !comments.length ? (
         <div>
             <AddComment addComment={this.addComment}></AddComment>
             <div className="noComments"> No Comments </div>
         </div>)
-    return (
+        :
+        (
          <div className="articleComments">
          <AddComment addComment={this.addComment}></AddComment>
         Comments ({commentCount}):

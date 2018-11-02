@@ -59,6 +59,7 @@ export const deleteArticle = async (articleId) => {
 
   export const postArticle = async(topic_slug, newArticle) => {
     const { data } = await axios.post(`${BASE_URL}/topics/${topic_slug}/articles`, newArticle)
+    data.articleWithCommentCount.dayjsDate = utils.convertTime(data.articleWithCommentCount)
     return data.articleWithCommentCount
   } 
 
@@ -68,14 +69,10 @@ export const deleteArticle = async (articleId) => {
     return data.comment
   } 
 
-  export const patchCommentVotes = async(commentId, newVotes) => {
-    const direction = newVotes === 1 ? "up" : "down"
-    const { status } = await axios.patch(`${BASE_URL}/comments/${commentId}?vote=${direction}`)
-    return status
-  }
-
-  export const patchArticleVotes = async(articleId, newVotes) => {
-    const direction = newVotes === 1 ? "up" : "down"
-    const { status } = await axios.patch(`${BASE_URL}/articles/${articleId}?vote=${direction}`)
+  export const patchVotes = async(id, newVotes, contentType) => {
+    const direction = newVotes === 1 ? "up" : "down";
+    const URL = contentType === "article" ? `${BASE_URL}/articles/${id}?vote=${direction}` :
+    `${BASE_URL}/comments/${id}?vote=${direction}`;
+    const { status } = await axios.patch(URL)
     return status
   }

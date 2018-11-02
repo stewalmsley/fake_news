@@ -6,6 +6,7 @@ import ArticleComments from './ArticleComments';
 import Delete from './Delete';
 import Vote from './Vote';
 import { navigate } from '@reach/router';
+import * as utils from '../utils';
 
 class FullArticle extends Component {
     state = {
@@ -16,16 +17,18 @@ class FullArticle extends Component {
     render() {
         const { loaded, deleted } = this.state;
         const { topic, title, dayjsDate, created_by, belongs_to, body, commentCount, votes} = this.state.article;
-        const { user, articleId } = this.props;
+        const { user, articleId, location } = this.props;
         if (!loaded) return <div className="loader"/>
+        const newArticle = location.state._id ? true: false
         return <div>
         {(deleted) && <h5>Article Deleted</h5> }
+        {(location.state._id) && <h5>Article Created</h5> }
         <h3><span className="topic"><Link to={`/topics/${belongs_to}/articles`}>{topic}: </Link></span> {title}</h3>
-        {created_by._id === user._id && <Delete deleteItem={this.deleteArticle}></Delete> }
+        <Delete newArticle={newArticle} user_id={user._id} author_id={created_by._id} deleteItem={this.deleteArticle}></Delete> 
         <div className="author"><Link to={`/users/${created_by.username}/articles`}>{created_by.name} </Link></div>
         <div className="date">{dayjsDate}</div>
         <p> {body}  </p>
-        <Vote user_id={user._id} author_id ={created_by._id} updateVotes={this.updateVotes} votes={votes}></Vote>
+        <Vote contentType={"article"} newArticle={newArticle} user_id={user._id} author_id={created_by._id} votes={votes}></Vote>
         <ArticleComments commentCount={commentCount} articleId={articleId} user={user}></ArticleComments>
         </div>
     }
@@ -34,17 +37,27 @@ class FullArticle extends Component {
       }
 
     fetchArticle() {
-        api.getArticle(this.props.articleId)
-        .then(article => {
+        const {location} = this.props
+        if (location && location.state && location.state._id) {
+            location.state.topic = utils.createTopicKey(location.state);
             this.setState ({
-                article,
+                article: location.state,
                 loaded: true
             })
-        })
-        .catch(err => {
-            navigate('/error', { replace: true, state: {
-                code: 404}})
-          })
+        }
+        else {
+            api.getArticle(this.props.articleId)
+            .then(article => {
+                this.setState ({
+                    article,
+                    loaded: true
+                })
+            })
+            .catch(err => {
+                navigate('/error', { replace: true, state: {
+                    code: 404}})
+            })
+        }
     }
 
     deleteArticle = () => {
@@ -56,15 +69,12 @@ class FullArticle extends Component {
             })
         })
     }
-
-    updateVotes = (id, voteChange) => {
-        api.patchArticleVotes(id, voteChange)
-    }
 }
 
 FullArticle.propTypes = {
     articleId: PropTypes.string,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired, 
+    location: PropTypes.object
 };
 
 export default FullArticle;
