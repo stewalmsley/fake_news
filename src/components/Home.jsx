@@ -18,7 +18,7 @@ class Home extends Component {
       return <div>
       <main>  
           <Sort content="articles" updateSort={this.updateSort}></Sort>
-           <Articles articles={articles} user={user} />
+           <Articles source="home" articles={articles} user={user} />
         </main>
     </div>
   }

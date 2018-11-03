@@ -12,12 +12,12 @@ class Topic extends Component {
         loaded: false
     }
     render() {
-        const { user } = this.props
+        const { user, topic_slug } = this.props
         const { articles, loaded} = this.state
         if (!loaded) return <div className="loader"></div>
         return <div>
             <Sort content="articles" updateSort={this.updateSort}></Sort>
-        <main>   <Articles articles={articles} user={user} />
+        <main>   <Articles source="topic" topic_slug={topic_slug} articles={articles} user={user} />
           </main>
       </div>
     }

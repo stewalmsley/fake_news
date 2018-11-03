@@ -4,6 +4,7 @@ import Comment from './Comment';
 
 const Comments = ({ comments, user, source, userProfile }) => {
     return <div>
+        {source === "user" && <h4>Comments ({comments.length})</h4>}
         {comments.map(comment => {
         return <Comment user={user} userProfile={userProfile} key={comment._id} source={source} comment={comment}></Comment>
         })}</div>
