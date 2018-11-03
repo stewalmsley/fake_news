@@ -41,7 +41,6 @@ class App extends Component {
       <NotFound default/>
       </Router>
       <section><Sidebar user={user} users={users} topics={topics} loaded={loaded}/></section>
-        <footer></footer>
       </div>
     );
   }
