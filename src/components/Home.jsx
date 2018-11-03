@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Articles from './Articles';
-import Sort from './Sort'
 import * as api from '../api';
 import * as utils from '../utils';
 import { navigate } from '@reach/router';
@@ -17,8 +16,7 @@ class Home extends Component {
       if (!loaded) return <div className="loader"></div>
       return <div>
       <main>  
-          <Sort content="articles" updateSort={this.updateSort}></Sort>
-           <Articles source="home" articles={articles} user={user} />
+           <Articles updateSort={this.updateSort} source="home" articles={articles} user={user} />
         </main>
     </div>
   }

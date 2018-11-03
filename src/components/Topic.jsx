@@ -4,7 +4,6 @@ import * as api from '../api';
 import * as utils from '../utils';
 import Articles from './Articles';
 import { navigate } from '@reach/router';
-import Sort from './Sort'
 
 class Topic extends Component {
     state = {
@@ -16,8 +15,7 @@ class Topic extends Component {
         const { articles, loaded} = this.state
         if (!loaded) return <div className="loader"></div>
         return <div>
-            <Sort content="articles" updateSort={this.updateSort}></Sort>
-        <main>   <Articles source="topic" topic_slug={topic_slug} articles={articles} user={user} />
+        <main>   <Articles source="topic" updateSort={this.updateSort} topic_slug={topic_slug} articles={articles} user={user} />
           </main>
       </div>
     }

@@ -7,7 +7,6 @@ import Articles from './Articles';
 import { Link } from '@reach/router';
 import Comments from './Comments.jsx';
 import { navigate } from '@reach/router';
-import Sort from './Sort'
 
 class User extends Component {
     state = {
@@ -27,13 +26,12 @@ class User extends Component {
                 <Avatar avatar_url={avatar_url} height="100px" width="100px"></Avatar>
                 {name} ({username})
                 <div className="userContentControl">
-                    <Sort content={content} updateSort={this.updateSort}></Sort>
-        <div>{content==="comments" && <Link to={`/users/${username}/articles`}>Show {name}'s Articles</Link>}{" "}
-        {content==="articles" && <Link to={`/users/${username}/comments`}>Show {name}'s Comments</Link>}</div>
+                    <div>{content==="comments" && <Link to={`/users/${username}/articles`}>Show {name}'s Articles</Link>}{" "}
+                    {content==="articles" && <Link to={`/users/${username}/comments`}>Show {name}'s Comments</Link>}</div>
                     </div>
                 <div>
-                  {content === "articles" && <Articles source="user" articles={articles} userProfile={userProfile} user={user} />}
-                  {content === "comments" && <Comments source="user" comments={comments} userProfile={userProfile} user={user} />}
+                  {content === "articles" && <Articles updateSort={this.updateSort} source="user" articles={articles} userProfile={userProfile} user={user} />}
+                  {content === "comments" && <Comments updateSort={this.updateSort} source="user" comments={comments} userProfile={userProfile} user={user} />}
                 </div>
             </main>
         );

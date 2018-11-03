@@ -108,8 +108,7 @@ p {
 }
 
 .userContentControl {
-  display: flex;
-  justify-content: space-between;
+  text-align: right;
   margin-right: 2.5%;
   font-size: 15px;
 }
