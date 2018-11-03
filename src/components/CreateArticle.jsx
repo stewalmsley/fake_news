@@ -44,6 +44,10 @@ class CreateArticle extends Component {
         .then(createdArticle => {
             navigate(`/articles/${createdArticle._id}`, {state: createdArticle})
         })
+        .catch(err => {
+            navigate('/error', { replace: true, state: {
+                code: err.response.data.msg}})
+        })
     }
 }
 

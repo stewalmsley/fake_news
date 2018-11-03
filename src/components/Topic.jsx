@@ -41,7 +41,7 @@ class Topic extends Component {
         })
         .catch(err => {
             navigate('/error', { replace: true, state: {
-                code: 404}})
+                code: err.response.data.msg}})
           })
     }
     updateSort = event => {
