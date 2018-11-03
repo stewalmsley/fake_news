@@ -26,11 +26,13 @@ class Vote extends Component {
     }
 
     handleVote(change) {
+        const {voteChange } = this.state
+        const apiChange = change === 0 ? -voteChange : change;
         const { contentType } = this.props
         this.setState({
             voteChange: change
         })
-            api.patchVotes(this.props.id, change, contentType)
+            api.patchVotes(this.props.id, apiChange, contentType)
     }
 }
 
