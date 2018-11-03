@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
+import NavLink from './NavLink'
 
 const Users = props => {
     const { users } = props
@@ -8,7 +8,7 @@ const Users = props => {
         <div>
             <h6>Trending Users: </h6>
             {users.map(user => {
-                return <Link key={user._id} to={`/users/${user.username}/articles`}><h6>{user.username}</h6></Link>
+                return <NavLink key={user._id} to={`/users/${user.username}/articles`}><h6>{user.username}</h6></NavLink>
             })}
         </div>
     );

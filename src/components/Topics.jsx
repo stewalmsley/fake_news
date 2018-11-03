@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
+import NavLink from './NavLink'
+
 
 const Topics = props => {
     const { topics } = props
@@ -8,7 +9,7 @@ const Topics = props => {
         <div>
             <h6>Trending Topics: </h6>
             {topics.map(topic => {
-                return <Link key={topic._id} to={`/topics/${topic.slug}/articles`}><h6>{topic.title}</h6></Link>
+                return <NavLink key={topic._id} to={`/topics/${topic.slug}/articles`}><h6>{topic.title}</h6></NavLink>
             })}
         </div>
     );

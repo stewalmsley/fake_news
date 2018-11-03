@@ -12,7 +12,6 @@ import LoggedInUser from './components/LoggedInUser';
 import { Router } from '@reach/router';
 import { Link } from '@reach/router';
 
-
 class App extends Component {
   state = {
     user: {}, 
