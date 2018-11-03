@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Failing = ({ location }) => {
+const NotFound = ({ location }) => {
     if (location.state) return (
     <div>
-            <h1> Error: {location.state.code} </h1>
+            <h3> Error: {location.state.code} </h3>
         </div>
     )
     return (
         <div>
-            <h1>Sorry you seem to have used a Fake URL </h1>
+            <h3>Sorry you seem to have used a Fake URL </h3>
         </div>
     );
 };
 
-Failing.propTypes = {
+NotFound.propTypes = {
     location: PropTypes.object
 };
 
-export default Failing;
+export default NotFound;

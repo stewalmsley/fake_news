@@ -7,8 +7,8 @@ import User from './components/User.jsx';
 import FullArticle from './components/FullArticle.jsx';
 import CreateArticle from './components/CreateArticle.jsx';
 import Sidebar from './components/Sidebar.jsx';
-import Failing from './components/Failing.jsx';
-import Hello from './components/Hello';
+import NotFound from './components/NotFound';
+import LoggedInUser from './components/LoggedInUser';
 import { Router } from '@reach/router';
 import { Link } from '@reach/router';
 
@@ -27,7 +27,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         <Link to="/"><h2 className="fakeNews">Fake News</h2></Link>
-        <Hello user={user} loaded={loaded}></Hello>
+        <LoggedInUser user={user} loaded={loaded}></LoggedInUser>
         </header> 
         <nav>
          <Link to="/create"><button className="create">Create Article</button></Link>
@@ -38,7 +38,7 @@ class App extends Component {
       <User user={user} path="/users/:username/:content" />
       <Topic user={user} path="/topics/:topic_slug/articles" />
       <CreateArticle topics={topics} user={user} path="/create"/>
-      <Failing default/>
+      <NotFound default/>
       </Router>
       <section><Sidebar user={user} users={users} topics={topics} loaded={loaded}/></section>
         <footer></footer>
