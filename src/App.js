@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Home from './components/Home.jsx';
+import LogIn from './components/LogIn.jsx'
 import * as api from './api';
 import Topic from './components/Topic.jsx';
 import User from './components/User.jsx';
@@ -29,10 +30,12 @@ class App extends Component {
         <LoggedInUser user={user} loaded={loaded}></LoggedInUser>
         </header> 
         <nav>
-         <Link to="/create"><button className="create">Create Article</button></Link>
+         <Link to="/create"><button className="navbutton">Create Article</button></Link>
+         <Link to="/login"><button className="navbutton">Log In / Switch User</button></Link>
         </nav>
       <Router>
       <Home user={user} path="/" />
+      <LogIn users={users} setUser={this.setUser} path="/login"/>
       <FullArticle user={user} path="/articles/:articleId" />
       <User user={user} path="/users/:username/:content" />
       <Topic user={user} path="/topics/:topic_slug/articles" />
@@ -49,14 +52,12 @@ class App extends Component {
     this.fetchUsers()
   }
 
-  setUser() {
-    api.getRandomUser()
-    .then(user => {
+  setUser = async (selectedUser) => {
+    const user = selectedUser ? selectedUser : await api.getRandomUser()
       this.setState({
-        user, 
+        user,
         loaded: true
-      })
-    })
+      });
   }
 
   fetchTopics() {

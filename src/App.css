@@ -34,11 +34,11 @@ img {
 
 nav {
   grid-area: nav;
-  text-align: right;
-  margin-right: 20%
+  display: flex;
+  justify-content: space-around;
 }
 
-.create {
+.navbutton {
   background-color: lightcyan;
   font-size: 15px
 }
