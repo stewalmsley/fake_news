@@ -45,17 +45,19 @@ class App extends Component {
     );
   }
   componentDidMount() {
-    this.setUser()
+    this.setUser(null, JSON.parse(localStorage.getItem("user")))
     this.fetchTopics()
     this.fetchUsers()
   }
 
-  setUser = async (selectedUser) => {
-    const user = selectedUser ? selectedUser : await api.getRandomUser()
+  setUser = async (selectedUser, localStorageUser) => {
+    const user = selectedUser ? selectedUser : localStorageUser ? localStorageUser :
+    await api.getRandomUser()
       this.setState({
         user,
         loaded: true
       });
+    localStorage.setItem("user", JSON.stringify(user));
   }
 
   fetchTopics() {
