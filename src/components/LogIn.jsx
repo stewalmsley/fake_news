@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { navigate } from '@reach/router';
 
 class LogIn extends Component {
     state = {
         logInUser: '',
         switchUser: '', 
         password: '', 
-        incorrectUserName: false
+        incorrectUserName: false, 
+        welcomeUser: ''
     }
     render() {
         const { users } = this.props
-        return (
+        const { incorrectUserName, welcomeUser } = this.state
+        
+        return welcomeUser ? <div><h5>Welcome Back {welcomeUser}</h5></div> : (
             <div>
                 <h6>Enter username and password </h6>
                 <form name="logInUser" onSubmit={this.handleSubmit}>
@@ -21,7 +25,7 @@ class LogIn extends Component {
                     <input type="submit"/>
                 </form>
                 <div className="loginError">
-                {this.state.incorrectUserName && <span>Incorrect User Name</span>}
+                {incorrectUserName && <span>Incorrect User Name</span>}
                 </div>
                 <h6>Or Select User: </h6>
                 <form name="switchUser" onSubmit={this.handleSubmit}>
@@ -51,8 +55,12 @@ class LogIn extends Component {
             this.setState({
                 logInUser: '', 
                 password : '', 
-                incorrectUserName: false
+                incorrectUserName: false, 
+                welcomeUser: user.username
             })
+            setTimeout(()=>{
+                navigate('/')
+            }, 500)
         }
     }
 
