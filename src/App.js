@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Home from './components/Home.jsx';
-import LogIn from './components/LogIn.jsx'
+import LogIn from './components/LogIn.jsx';
+import Nav from './components/Nav.jsx'
 import * as api from './api';
 import Topic from './components/Topic.jsx';
 import User from './components/User.jsx';
@@ -29,10 +30,7 @@ class App extends Component {
         <Link to="/"><h2 className="fakeNews">Fake News</h2></Link>
         <LoggedInUser user={user} loaded={loaded}></LoggedInUser>
         </header> 
-        <nav>
-         <Link to="/create"><button className="navbutton">Create Article</button></Link>
-         <Link to="/login"><button className="navbutton">Log In / Switch User</button></Link>
-        </nav>
+        <Nav></Nav>
       <Router>
       <Home user={user} path="/" />
       <LogIn users={users} setUser={this.setUser} path="/login"/>

@@ -17,10 +17,12 @@ class ArticleSnapshot extends Component {
         const { deleteError, deleted } = this.state
     return (
         <div className="article">
+        <div>
         {source!== "user" && (<span className="author"><Link to={`/users/${created_by.username}/articles`}>{created_by.name} </Link></span>)}
         <Link to={`/articles/${article._id}`}> 
-        {" "}{title} <br></br>
+        {" "}{title} </Link></div>
         <div className="date">{dayjsDate}</div>
+        <Link to={`/articles/${article._id}`}>
         <p>{deleted && "article deleted"} {!deleted && croppedBody}<br></br> </p></Link>
         {deleteError && <h5>Encountered and Error trying to Delete </h5>}
         <Delete id={_id} user_id={user._id} author_id={author_id} deleteItem={this.deleteArticle}></Delete>
