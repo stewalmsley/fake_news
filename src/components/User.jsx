@@ -49,8 +49,7 @@ class User extends Component {
     fetchUser() {
         api.getUser(this.props.username)
         .then(({ user, articles, comments }) => {
-            const croppedArticles = utils.cropArticleOrCommentBodies(articles, 50);
-            const sortedArticles = utils.sortArticlesOrComments(croppedArticles, "commentCount");
+            const sortedArticles = utils.sortArticlesOrComments(articles, "commentCount");
             const sortedComments = utils.sortArticlesOrComments(comments, "votes");
             this.setState ({
                 userProfile: user,

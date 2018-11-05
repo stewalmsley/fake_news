@@ -32,8 +32,7 @@ class Topic extends Component {
     fetchArticles() {
         api.getArticles(this.props.topic_slug)
         .then(articles  => {
-            const croppedArticles = utils.cropArticleOrCommentBodies(articles, 50);
-            const sortedArticles = utils.sortArticlesOrComments(croppedArticles, "commentCount");
+            const sortedArticles = utils.sortArticlesOrComments(articles, "commentCount");
             this.setState ({
                 articles : sortedArticles,
                 loaded: true

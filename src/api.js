@@ -65,7 +65,7 @@ export const deleteArticle = async (articleId) => {
 
   export const postComment = async(articleId, newComment) => {
     const { data } = await axios.post(`${BASE_URL}/articles/${articleId}/comments`, newComment)
-    data.comment.croppedBody = utils.addCroppedBody(data.comment.body, 20)
+    data.comment.croppedBody = utils.createCroppedBody(data.comment.body, 20)
     return data.comment
   } 
 
