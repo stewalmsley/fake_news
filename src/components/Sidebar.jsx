@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Topics from './Topics';
-import Users from './Users';
+import React from "react";
+import PropTypes from "prop-types";
+import Topics from "./Topics";
+import Users from "./Users";
 
-const Sidebar = ({ topics, users}) => {
-    return (
-        <div>
-            <Topics topics={topics}></Topics>
-            <Users users={users}></Users>
-        </div>
-    );
+const Sidebar = ({ topics, users }) => {
+  return (
+    <div>
+      <Topics topics={topics} />
+      <Users users={users} />
+    </div>
+  );
 };
 
 Sidebar.propTypes = {
-    user: PropTypes.object.isRequired, 
-    topics: PropTypes.array.isRequired
+  user: PropTypes.object.isRequired,
+  topics: PropTypes.array.isRequired
 };
 
 export default Sidebar;

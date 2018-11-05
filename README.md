@@ -23,3 +23,7 @@ You can clone this project from github into a folder and run NPM install to set 
 The project can be run locally with Node using the Start script defined in the Package JSON.
 npm run start
 This will open the project in a browser with local host.
+
+npm test
+
+will run the test file. Testing has been added for the functionality in the utils folder which is used to manipulate and sort the data returned from the api. 

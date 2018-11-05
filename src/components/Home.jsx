@@ -1,54 +1,72 @@
-import React, { Component } from 'react';
-import Articles from './Articles';
-import * as api from '../api';
-import * as utils from '../utils';
-import { navigate } from '@reach/router';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import Articles from "./Articles";
+import * as api from "../api";
+import * as utils from "../utils";
+import { navigate } from "@reach/router";
+import PropTypes from "prop-types";
 
 class Home extends Component {
   state = {
-      articles: [], 
-      loaded: false, 
+    articles: [],
+    loaded: false
   };
   render() {
-      const { user } = this.props
-      const { articles, loaded } = this.state
-      if (!loaded) return <div className="loader"></div>
-      return <div>
-      <main>  
-           <Articles updateSort={this.updateSort} source="home" articles={articles} user={user} />
+    const { user } = this.props;
+    const { articles, loaded } = this.state;
+    if (!loaded) return <div className="loader" />;
+    return (
+      <div>
+        <main>
+          <Articles
+            updateSort={this.updateSort}
+            source="home"
+            articles={articles}
+            user={user}
+          />
         </main>
-    </div>
+      </div>
+    );
   }
   componentDidMount() {
-      this.fetchArticles();
-    }
+    this.fetchArticles();
+  }
 
   fetchArticles() {
-      api.getArticles()
+    api
+      .getArticles()
       .then(articles => {
-          const sortedArticles = utils.sortArticlesOrComments(articles, "commentCount");
-          this.setState ({
-              articles: sortedArticles, 
-              loaded: true
-          })
+        const sortedArticles = utils.sortArticlesOrComments(
+          articles,
+          "commentCount"
+        );
+        this.setState({
+          articles: sortedArticles,
+          loaded: true
+        });
       })
       .catch(err => {
-        navigate('/error', { replace: true, state: {
-            code: err.response.data.msg}})
-      })
+        navigate("/error", {
+          replace: true,
+          state: {
+            code: err.response.data.msg
+          }
+        });
+      });
   }
 
   updateSort = event => {
-    const sortedArticles = utils.sortArticlesOrComments(this.state.articles, event.target.value)
+    const sortedArticles = utils.sortArticlesOrComments(
+      this.state.articles,
+      event.target.value
+    );
     this.setState({
-        articles: sortedArticles
-    })
-  }
+      articles: sortedArticles
+    });
+  };
 }
 
 Home.propTypes = {
-    user: PropTypes.object.isRequired, 
+  user: PropTypes.object.isRequired
 };
 
 export default Home;

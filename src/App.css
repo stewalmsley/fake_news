@@ -5,10 +5,10 @@
   display: grid;
   grid-template-columns: 1fr 3.9fr;
   grid-template-rows: 15% 5% 10fr;
-  grid-template-areas: 
-  'header header'
-  'sidebar nav'
-  'sidebar main'
+  grid-template-areas:
+    "header header"
+    "sidebar nav"
+    "sidebar main";
 }
 
 .App-header {
@@ -20,12 +20,12 @@
 
 header {
   grid-area: header;
-  position: relative
+  position: relative;
 }
 
 .hello {
   font-size: 15px;
-  margin-top: 2%; 
+  margin-top: 2%;
 }
 
 .loginError {
@@ -33,7 +33,7 @@ header {
   font-size: 12px;
   height: 30px;
   width: 100%;
-  padding-top: 10px
+  padding-top: 10px;
 }
 
 img {
@@ -48,43 +48,46 @@ nav {
 
 .navbutton {
   background-color: lightcyan;
-  font-size: 15px
+  font-size: 15px;
 }
 
 section {
   grid-area: sidebar;
-} 
+}
 
 main {
   grid-area: main;
 }
 
-a:visited, a:link {
+a:visited,
+a:link {
   color: green;
   text-decoration: none;
 }
 
-.article, .article p {
+.article,
+.article p {
   background-color: whitesmoke;
   width: 99%;
   border: 1px darkgrey;
   margin-bottom: 1%;
-  color: grey 
+  color: grey;
 }
 
-.stats, .stats a {
+.stats,
+.stats a {
   font-size: 15px;
   display: flex;
   justify-content: space-around;
-  color: dimgray
+  color: dimgray;
 }
 
 .author a {
-  color: rgba(50, 100, 200, .9)
+  color: rgba(50, 100, 200, 0.9);
 }
 
 p {
-  font-size: 16px
+  font-size: 16px;
 }
 
 .loader {
@@ -99,20 +102,24 @@ p {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .sort {
   text-align: left;
   margin-left: 5%;
-  margin-bottom: .5%;
-  font-size: 20px
+  margin-bottom: 0.5%;
+  font-size: 20px;
 }
 
 .date {
   color: dimgray;
-  font-size: 15px
+  font-size: 15px;
 }
 
 .userContentControl {
@@ -123,19 +130,19 @@ p {
 
 .votes {
   color: grey;
-  font-size: 15px
+  font-size: 15px;
 }
 
 .comment {
-  width: 100%
+  width: 100%;
 }
 
 .noComments {
   color: grey;
   margin-top: 20px;
-  font-size: 15px
+  font-size: 15px;
 }
 
 h3 {
-  margin-bottom: .5%;
+  margin-bottom: 0.5%;
 }
