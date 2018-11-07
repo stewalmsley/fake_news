@@ -9,7 +9,7 @@ const LoggedInUser = ({ user }) => {
       <Link to={`/users/${user.username}/articles`}>
         <Avatar avatar_url={user.avatar_url} height="50px" width="50px" />
       </Link>
-      <Link to={`/users/${user.username}/articles`}>{user.username}</Link>
+      <Link to={`/users/${user.username}/articles`}><span className="username">{user.username}</span></Link>
     </div>
   );
 };

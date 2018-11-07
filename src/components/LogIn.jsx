@@ -88,6 +88,8 @@ class LogIn extends Component {
   };
 }
 
-LogIn.propTypes = {};
+LogIn.propTypes = {
+  users: PropTypes.array.isRequired
+};
 
 export default LogIn;

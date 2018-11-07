@@ -80,7 +80,8 @@ class CreateArticle extends Component {
 }
 
 CreateArticle.propTypes = {
-  topics: PropTypes.array.isRequired
+  topics: PropTypes.array.isRequired, 
+  user: PropTypes.object.isRequired
 };
 
 export default CreateArticle;

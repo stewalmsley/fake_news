@@ -1,0 +1,76 @@
+{
+  "mitch": {
+    "username": "dedekind561",
+    "name": "Mitch",
+    "avatar_url": "https://carboncostume.com/wordpress/wp-content/uploads/2017/10/dale-chipanddalerescuerangers.jpg",
+    "_id": 2
+  },
+  "jonny": {
+    "username": "butter_bridge",
+    "name": "Jonny",
+    "_id": 1,
+    "avatar_url": "https://"
+  },
+  "article1": {
+    "title": "Living in the shadow of a great man",
+    "belongs_to": "mitch",
+    "created_by": "jonny",
+    "body": "I find this existence challenging",
+    "created_at": 1471522072389,
+    "_id": "1",
+    "votes": 0,
+    "commentCount": 0
+  },
+  "article2": {
+    "title": "7 inspirational thought leaders from Manchester UK",
+    "belongs_to": "mitch",
+    "created_by": "mitch",
+    "body": "Who are we kidding, there is only one, and it's Mitch!",
+    "created_at": 1500584273256,
+    "_id": "2",
+    "votes": 0,
+    "commentCount": 2
+  },
+  "article3": {
+    "title": "They're not exactly dogs, are they?",
+    "belongs_to": "cats",
+    "created_by": "jonny",
+    "body": "Well? Think about it.",
+    "created_at": 1500659650346,
+    "_id": "3",
+    "votes": 10,
+    "commentCount": 2
+  },
+  "article4": {
+    "title": "UNCOVERED: catspiracy to bring down democracy",
+    "belongs_to": "cats",
+    "created_by": "mitch",
+    "body": "Bastet walks amongst us, and the cats are taking arms!",
+    "created_at": 1514093931240,
+    "_id": "4",
+    "votes": 0,
+    "commentCount": 4
+  },
+  "comment": {
+    "body": "this is a comment",
+    "belongs_to": 4,
+    "votes": 2,
+    "created_by": "jonny",
+    "created_at": 1514093931240,
+    "_id": 1
+  },
+  "newTitle": "this is the title",
+  "newBody": "this is the body",
+  "topics": [
+    {
+      "title": "Mitch",
+      "slug": "mitch",
+      "_id": 1
+    },
+    {
+      "title": "Cats",
+      "slug": "cats",
+      "_id": 2
+    }
+  ]
+}

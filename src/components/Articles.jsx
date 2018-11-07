@@ -44,7 +44,9 @@ Articles.propTypes = {
   articles: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
   source: PropTypes.string,
-  userProfile: PropTypes.object
+  userProfile: PropTypes.object, 
+  topic_slug: PropTypes.string, 
+  updateSort: PropTypes.func
 };
 
 export default Articles;

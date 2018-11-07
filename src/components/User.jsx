@@ -28,13 +28,13 @@ class User extends Component {
         <div className="userContentControl">
           <div>
             {content === "comments" && (
-              <Link to={`/users/${username}/articles`}>
+              <Link className="articlesLink" to={`/users/${username}/articles`}>
                 Show {name}
                 's Articles
               </Link>
             )}{" "}
             {content === "articles" && (
-              <Link to={`/users/${username}/comments`}>
+              <Link className="commentsLink" to={`/users/${username}/comments`}>
                 Show {name}
                 's Comments
               </Link>
@@ -114,7 +114,8 @@ class User extends Component {
 
 User.propTypes = {
   username: PropTypes.string,
-  content: PropTypes.string
+  content: PropTypes.string, 
+  user: PropTypes.object.isRequired
 };
 
 export default User;

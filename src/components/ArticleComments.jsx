@@ -78,7 +78,8 @@ class ArticleComments extends Component {
 
 ArticleComments.propTypes = {
   commentCount: PropTypes.number,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired, 
+  articleId: PropTypes.string
 };
 
 export default ArticleComments;

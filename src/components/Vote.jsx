@@ -14,7 +14,7 @@ class Vote extends Component {
     if (voteChange !== 0)
       return (
         <div>
-          <button name="Reset" onClick={() => this.handleVote(0)}>
+          <button className="reset" name="Reset" onClick={() => this.handleVote(0)}>
             Undo
           </button>
           <span className="votes"> {votes + voteChange} </span>
@@ -22,11 +22,11 @@ class Vote extends Component {
       );
     return (
       <div>
-        <button name="Up" onClick={() => this.handleVote(1)}>
+        <button className="voteUp" name="Up" onClick={() => this.handleVote(1)}>
           Vote Up
         </button>
         <span className="votes"> {votes + voteChange} </span>
-        <button name="Down" onClick={() => this.handleVote(-1)}>
+        <button className="voteDown" name="Down" onClick={() => this.handleVote(-1)}>
           Vote Down
         </button>
       </div>
@@ -47,7 +47,10 @@ class Vote extends Component {
 Vote.propTypes = {
   votes: PropTypes.number.isRequired,
   user_id: PropTypes.string.isRequired,
-  author_id: PropTypes.string.isRequired
+  author_id: PropTypes.string.isRequired, 
+  newArticle: PropTypes.bool, 
+  contentType: PropTypes.string, 
+  id: PropTypes.string.isRequired
 };
 
 export default Vote;

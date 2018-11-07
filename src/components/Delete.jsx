@@ -13,7 +13,10 @@ const Delete = props => {
 
 Delete.propTypes = {
   deleteItem: PropTypes.func.isRequired,
-  commentId: PropTypes.string
+  id: PropTypes.string.isRequired, 
+  user_id: PropTypes.string.isRequired, 
+  author_id: PropTypes.string.isRequired, 
+  newArticle: PropTypes.bool
 };
 
 export default Delete;

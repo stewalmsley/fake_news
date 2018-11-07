@@ -9,9 +9,11 @@ const Topics = props => {
       <h6>Trending Topics: </h6>
       {topics.map(topic => {
         return (
-          <NavLink key={topic._id} to={`/topics/${topic.slug}/articles`}>
+          <div key={topic._id} className="topic">
+          <NavLink to={`/topics/${topic.slug}/articles`}>
             <h6>{topic.title}</h6>
           </NavLink>
+          </div>
         );
       })}
     </div>

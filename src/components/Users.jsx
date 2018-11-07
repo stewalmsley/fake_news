@@ -5,7 +5,7 @@ import NavLink from "./NavLink";
 const Users = props => {
   const { users } = props;
   return (
-    <div>
+    <div className="users">
       <h6>Trending Users: </h6>
       {users.map(user => {
         return (

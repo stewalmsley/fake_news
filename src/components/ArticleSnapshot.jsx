@@ -35,7 +35,9 @@ class ArticleSnapshot extends Component {
               </Link>
             </span>
           )}
+          <span className="title">
           <Link to={`/articles/${article._id}`}> {title} </Link>
+          </span>
         </div>
         <div className="date">{dayjsDate}</div>
         <Link to={`/articles/${article._id}`}>
@@ -44,7 +46,7 @@ class ArticleSnapshot extends Component {
             <br />{" "}
           </p>
         </Link>
-        {deleteError && <h5>Encountered and Error trying to Delete </h5>}
+        {deleteError && <h5>Encountered an Error trying to Delete </h5>}
         <Delete
           id={_id}
           user_id={user._id}
@@ -81,7 +83,10 @@ class ArticleSnapshot extends Component {
 }
 
 ArticleSnapshot.propTypes = {
-  article: PropTypes.object.isRequired
+  article: PropTypes.object.isRequired, 
+  user: PropTypes.object.isRequired, 
+  source: PropTypes.string,
+  userProfile: PropTypes.object
 };
 
 export default ArticleSnapshot;
