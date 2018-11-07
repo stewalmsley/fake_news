@@ -5,7 +5,7 @@ import Comment from "./Comment";
 const Comments = ({ comments, user, source, userProfile }) => {
   return (
     <div>
-      {source === "user" && <h4>Comments ({comments.length})</h4>}
+      {source === "user" && <h3>Comments ({comments.length})</h3>}
       {comments.map(comment => {
         return (
           <Comment

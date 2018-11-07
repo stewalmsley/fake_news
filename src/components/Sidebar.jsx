@@ -5,7 +5,7 @@ import Users from "./Users";
 
 const Sidebar = ({ topics, users }) => {
   return (
-    <div>
+    <div role="navigation" className="sidebar">
       <Topics topics={topics} />
       <Users users={users} />
     </div>

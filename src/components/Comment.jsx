@@ -26,17 +26,17 @@ class Comment extends Component {
             deleteItem={this.deleteComment}
           />
         )}
-        {deleteError && <h5>Encountered and Error trying to Delete </h5>}
+        {deleteError && <p>Encountered and Error trying to Delete </p>}
         <button className="comment" onClick={() => this.expandComment()}>
-          <h6>
+          <h3>
             <Link
               key={comment._id}
               to={`/users/${comment.created_by.username}`}
             >
               {comment.created_by.name}
-            </Link>
+            </Link>{" "}
             {comment.dayjsDate}
-          </h6>
+          </h3>
           <p>
             {" "}
             {deleted && "comment deleted"}{" "}

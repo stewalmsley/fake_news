@@ -6,16 +6,18 @@ const Topics = props => {
   const { topics } = props;
   return (
     <div>
-      <h6>Trending Topics: </h6>
-      {topics.map(topic => {
-        return (
-          <div key={topic._id} className="topic">
-          <NavLink to={`/topics/${topic.slug}/articles`}>
-            <h6>{topic.title}</h6>
-          </NavLink>
-          </div>
-        );
-      })}
+      <h3>Trending Topics: </h3>
+      <ul>
+        {topics.map(topic => {
+          return (
+            <li key={topic._id} className="topic">
+              <NavLink to={`/topics/${topic.slug}/articles`}>
+                {topic.title}
+              </NavLink>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

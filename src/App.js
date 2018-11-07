@@ -28,7 +28,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <Link to="/">
-            <h2 className="fakeNews">Fake News</h2>
+            <h1> Fake News</h1>
           </Link>
           <LoggedInUser user={user} loaded={loaded} />
         </header>

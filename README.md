@@ -5,7 +5,7 @@ This project is a React front end for a fake news social network, building on a 
 The front end is deployed on netlify - https://ncfakenews.netlify.com/ while the backend is deployed on Heroku (https://steve-news.herokuapp.com/).
 For example - https://steve-news.herokuapp.com/api/articles is the api endpoint for GET requests for all articles from the backend - these are displayed on the homepage of the front end at https://ncfakenews.netlify.com/
 
-The front end is tested with integration tests using Cypress as well as unit testing of the data handling funtionality.
+The front end is tested with integration tests using Cypress as well as unit testing of the data handling funtionality. Although the CSS/layout has not been prioritised, the Axe extension in Chrome has been used to ensure there are no accessibility issues. 
 
 The site loads with a random user selected and logged in - displayed with an avatar in the top right. Click 'Log In / Switch User' to enter one of the users' loginnames or select a user from a dropdown. The identity of the logged in user affects the functionality - users can delete only their own articles and comments, and can vote on only other users' articles/comments.
 When you select a new user to log in, you will see 'Welcome back.. (username)' and be navigated back to the home page.

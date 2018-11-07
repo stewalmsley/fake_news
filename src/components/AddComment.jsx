@@ -10,6 +10,7 @@ class AddComment extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <textarea
+            aria-label="comment"
             name="body"
             value={this.state.body}
             onChange={this.handleChange}

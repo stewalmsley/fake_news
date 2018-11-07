@@ -6,7 +6,7 @@ const Delete = props => {
   if (!newArticle && user_id !== author_id) return null;
   return (
     <div>
-      <button onClick={() => deleteItem(id)}>Delete</button>
+      <button className="delete" onClick={() => deleteItem(id)}>Delete</button>
     </div>
   );
 };

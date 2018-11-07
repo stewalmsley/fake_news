@@ -31,51 +31,55 @@ class FullArticle extends Component {
     if (!loaded) return <div className="loader" />;
     if (deleted)
       return (
-        <div>
-          {" "}
-          <h4>Article Deleted</h4>
-          <Link to={`/users/${user.username}/articles`}>
-            View Your Profile
-          </Link>{" "}
-        </div>
+        <main>
+          <div>
+            {" "}
+            <p>Article Deleted</p>
+            <Link to={`/users/${user.username}/articles`}>
+              View Your Profile
+            </Link>{" "}
+          </div>
+        </main>
       );
     const newArticle = location.state._id ? true : false;
     return (
-      <div>
-        {location.state._id && <h5>Article Created</h5>}
-        <h3>
-          <span className="topic">
-            <Link to={`/topics/${belongs_to}/articles`}>{topic}: </Link>
-          </span>{" "}
-          {title}
-        </h3>
-        <Delete
-          id={_id}
-          newArticle={newArticle}
-          user_id={user._id}
-          author_id={created_by._id}
-          deleteItem={this.deleteArticle}
-        />
-        <div className="author">
-          <Link to={`/users/${created_by.username}/articles`}>
-            {created_by.name}{" "}
-          </Link>
+      <main>
+        <div>
+          {location.state._id && <p>Article Created</p>}
+          <h2>
+            <span>
+              <Link to={`/topics/${belongs_to}/articles`}>{topic}: </Link>
+            </span>{" "}
+            {title}
+          </h2>
+          <Delete
+            id={_id}
+            newArticle={newArticle}
+            user_id={user._id}
+            author_id={created_by._id}
+            deleteItem={this.deleteArticle}
+          />
+          <div className="author">
+            <Link to={`/users/${created_by.username}/articles`}>
+              {created_by.name}{" "}
+            </Link>
+          </div>
+          <div className="date">{dayjsDate}</div>
+          <p> {body} </p>
+          <Vote
+            contentType={"article"}
+            newArticle={newArticle}
+            user_id={user._id}
+            author_id={created_by._id}
+            votes={votes}
+          />
+          <ArticleComments
+            commentCount={commentCount}
+            articleId={articleId}
+            user={user}
+          />
         </div>
-        <div className="date">{dayjsDate}</div>
-        <p> {body} </p>
-        <Vote
-          contentType={"article"}
-          newArticle={newArticle}
-          user_id={user._id}
-          author_id={created_by._id}
-          votes={votes}
-        />
-        <ArticleComments
-          commentCount={commentCount}
-          articleId={articleId}
-          user={user}
-        />
-      </div>
+      </main>
     );
   }
   componentDidMount() {

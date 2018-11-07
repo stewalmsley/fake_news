@@ -2,6 +2,7 @@
   height: 100vh;
   text-align: center;
   font-size: 22px;
+  font-family: Arial, Helvetica, sans-serif;
   display: grid;
   grid-template-columns: 1fr 3.9fr;
   grid-template-rows: 15% 5% 10fr;
@@ -16,11 +17,31 @@
   justify-content: space-between;
   margin-left: 4%;
   margin-right: 4%;
+  margin-bottom: 5%;
 }
 
 header {
   grid-area: header;
   position: relative;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 25px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.topic,
+.user {
+  font-size: 16px;
+  margin-top: 10%;
+  list-style: none;
 }
 
 .hello {
@@ -65,13 +86,17 @@ a:link {
   text-decoration: none;
 }
 
-.article,
+.article {
+  border: 1px solid rgba(240, 245, 245, 0.952);
+  margin-right: 0.5%;
+  padding: 1%;
+}
 .article p {
-  background-color: whitesmoke;
+  background-color: white;
   width: 99%;
-  border: 1px darkgrey;
   margin-bottom: 1%;
-  color: grey;
+  color: rgba(45, 46, 46, 0.924);
+  font-weight: 600;
 }
 
 .stats,
@@ -79,11 +104,13 @@ a:link {
   font-size: 15px;
   display: flex;
   justify-content: space-around;
-  color: dimgray;
+  color: rgba(50, 100, 200, 0.9);
+  font-weight: 600;
 }
 
 .author a {
   color: rgba(50, 100, 200, 0.9);
+  font-weight: 600;
 }
 
 p {
@@ -118,8 +145,8 @@ p {
 }
 
 .date {
-  color: dimgray;
-  font-size: 15px;
+  color: rgba(45, 46, 46, 0.924);
+  font-size: 16px;
 }
 
 .userContentControl {
@@ -129,20 +156,38 @@ p {
 }
 
 .votes {
-  color: grey;
-  font-size: 15px;
+  color: rgba(45, 46, 46, 0.924);
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .comment {
   width: 100%;
+  background-color: rgba(243, 242, 242, 0.986);
+  color: rgba(45, 46, 46, 0.924);
+  font-weight: 600;
 }
 
 .noComments {
-  color: grey;
+  color: rgba(45, 46, 46, 0.924);
   margin-top: 20px;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 h3 {
   margin-bottom: 0.5%;
+}
+
+section {
+  margin-top: 5%;
+}
+
+.sidebar .active {
+  color: black;
+  font-weight: 600;
+}
+
+.sidebar .inactive {
+  color: rgba(50, 100, 200, 0.9);
+  font-weight: 600;
 }

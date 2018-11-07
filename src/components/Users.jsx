@@ -5,15 +5,19 @@ import NavLink from "./NavLink";
 const Users = props => {
   const { users } = props;
   return (
-    <div className="users">
-      <h6>Trending Users: </h6>
-      {users.map(user => {
-        return (
-          <NavLink key={user._id} to={`/users/${user.username}/articles`}>
-            <h6>{user.username}</h6>
-          </NavLink>
-        );
-      })}
+    <div>
+      <h3>Trending Users: </h3>
+      <ul>
+        {users.map(user => {
+          return (
+            <li key={user._id} className="user">
+              <NavLink to={`/users/${user.username}/articles`}>
+                {user.username}
+              </NavLink>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

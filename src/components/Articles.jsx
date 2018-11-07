@@ -23,7 +23,7 @@ const Articles = ({
         : `All Articles (${count})`;
   return (
     <div>
-      <h4>{heading}</h4>
+      <h2>{heading}</h2>
       <Sort content="articles" updateSort={updateSort} />
       {articles.map(article => {
         return (
@@ -44,8 +44,8 @@ Articles.propTypes = {
   articles: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
   source: PropTypes.string,
-  userProfile: PropTypes.object, 
-  topic_slug: PropTypes.string, 
+  userProfile: PropTypes.object,
+  topic_slug: PropTypes.string,
   updateSort: PropTypes.func
 };
 

@@ -12,43 +12,55 @@ class CreateArticle extends Component {
   render() {
     const { topics } = this.props;
     return (
-      <div>
-        <h4>Create Article </h4>
-        <form onSubmit={this.handleSubmit}>
-          <select required name="topic_slug" onChange={this.handleChange}>
-            <option value="">Choose Topic </option>
-            {topics.map(topic => {
-              return (
-                <option key={topic._id} value={topic.slug}>
-                  {topic.title}
-                </option>
-              );
-            })}
-          </select>
-          <br />
-          <textarea
-            required
-            name="title"
-            value={this.state.title}
-            onChange={this.handleChange}
-            placeholder="Title"
-            cols="100"
-            rows="3"
-          />
-          <br />
-          <textarea
-            required
-            name="body"
-            value={this.state.body}
-            onChange={this.handleChange}
-            placeholder="Write Article here"
-            cols="100"
-            rows="20"
-          />
-          <br />
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+      <main>
+        <div>
+          <h2>Create Article </h2>
+          <form className="createArticle" onSubmit={this.handleSubmit}>
+            <div>
+              <select
+                aria-label="topic"
+                required
+                name="topic_slug"
+                onChange={this.handleChange}
+              >
+                <option value="">Choose Topic </option>
+                {topics.map(topic => {
+                  return (
+                    <option key={topic._id} value={topic.slug}>
+                      {topic.title}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div>
+              <textarea
+                aria-label="articletitle"
+                required
+                name="title"
+                value={this.state.title}
+                onChange={this.handleChange}
+                placeholder="Title"
+                cols="100"
+                rows="3"
+              />
+            </div>
+            <textarea
+              aria-label="articlebody"
+              required
+              name="body"
+              value={this.state.body}
+              onChange={this.handleChange}
+              placeholder="Write Article here"
+              cols="100"
+              rows="20"
+            />
+            <div>
+              <input type="submit" value="Submit" />
+            </div>
+          </form>
+        </div>
+      </main>
     );
   }
 
@@ -80,7 +92,7 @@ class CreateArticle extends Component {
 }
 
 CreateArticle.propTypes = {
-  topics: PropTypes.array.isRequired, 
+  topics: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired
 };
 
