@@ -13,9 +13,9 @@ const Delete = props => {
 
 Delete.propTypes = {
   deleteItem: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired, 
-  user_id: PropTypes.string.isRequired, 
-  author_id: PropTypes.string.isRequired, 
+  id: PropTypes.string,
+  user_id: PropTypes.string,
+  author_id: PropTypes.string,
   newArticle: PropTypes.bool
 };
 

@@ -15,7 +15,7 @@ class CreateArticle extends Component {
       <main>
         <div>
           <h2>Create Article </h2>
-          <form className="createArticle" onSubmit={this.handleSubmit}>
+          <form name="createArticle" className="createArticle" onSubmit={this.handleSubmit}>
             <div>
               <select
                 aria-label="topic"

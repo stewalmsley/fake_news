@@ -8,7 +8,7 @@ class AddComment extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form name="addComment" onSubmit={this.handleSubmit}>
           <textarea
             aria-label="comment"
             name="body"

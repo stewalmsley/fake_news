@@ -44,7 +44,7 @@ class FullArticle extends Component {
     const newArticle = location.state._id ? true : false;
     return (
       <main>
-        <div>
+        <div className="created">
           {location.state._id && <p>Article Created</p>}
           <h2>
             <span>

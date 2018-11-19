@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "@reach/router";
-import Sort from "./Sort.jsx";
 
 const Menu = ({ topics, users }) => {
   return (
@@ -46,6 +45,9 @@ const Menu = ({ topics, users }) => {
   );
 };
 
-Menu.propTypes = {};
+Menu.propTypes = {
+  topics: PropTypes.array.isRequired, 
+  users: PropTypes.array.isRequired
+};
 
 export default Menu;

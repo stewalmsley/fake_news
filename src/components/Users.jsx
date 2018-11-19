@@ -10,7 +10,7 @@ const Users = props => {
         {users.slice(0, 2).map(user => {
           return <li key={user._id} className="user">
               <NavLink to={`/users/${user.username}/articles`}>
-                <div>{user.username}</div>
+                <div className={user.username}> {user.username}</div>
                 <div className="sidebarStats">
                   ({user.articleCount} articles, receiving {user.commentCount} comments and {user.votes} votes)
                 </div>

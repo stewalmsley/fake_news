@@ -30,12 +30,12 @@ class Comment extends Component {
         <button className="comment" onClick={() => this.expandComment()}>
           <h3>
             {source === "user" && <Link to={`/articles/${comment.belongs_to}`}> Click for Article</Link>}
-            <Link
+            {source !== "user" && <Link
               key={comment._id}
               to={`/users/${comment.created_by.username}/articles`}
             >
               {comment.created_by.name}
-            </Link>{" "}
+            </Link>}{" "}
             {comment.dayjsDate}
           </h3>
           <p>

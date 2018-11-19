@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Sort = ({ updateSort, content, filter }) => {
   return <div>
-      <select disabled={filter} aria-label="sort" onChange={updateSort}>
+      <select name="sort" disabled={filter} aria-label="sort" onChange={updateSort}>
         {content !== "comments" && <option value="commentCount">
             Most Comments
           </option>}

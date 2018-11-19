@@ -19,6 +19,7 @@ class Sidebar extends Component {
         <form className="topicUserSearch">
           <input
             placeholder="Search all topics/users..."
+            aria-label="filter"
             value={this.state.filter}
             onChange={this.handleInputChange}
             size="30"

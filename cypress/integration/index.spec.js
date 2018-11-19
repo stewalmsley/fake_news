@@ -18,7 +18,11 @@ describe("home", () => {
         method: "GET",
         url: "/api/articles",
         response: {
-          articlesWithCommentCounts: [article1, article2, article3, article4]
+          articlesWithCommentCounts: [article1, article2, article3, article4],
+          topicsAndAuthors: {
+            topics,
+            authors: [ jonny, mitch ]
+          }
         }
       });
       cy.route({
@@ -116,7 +120,7 @@ describe("home", () => {
   describe("header", () => {
     it("the header loads with the app name", () => {
       cy.get("header")
-        .get("h2")
+        .get("h1")
         .should("contain", "Fake News");
     });
     it("a random user is logged in", () => {
@@ -133,9 +137,8 @@ describe("home", () => {
         .click();
       cy.url().should("contain", "/login");
       cy.visit("http://localhost:3000/login");
-      cy.get("select").select("Mitch");
-      cy.get("form")
-        .eq(1)
+      cy.get('select[name="switchUser"]').select("Mitch");
+      cy.get('form[name="switchUser"]')
         .submit();
       cy.get("header")
         .get(".hello")
@@ -150,18 +153,18 @@ describe("home", () => {
           .click();
         cy.url().should("contain", "/create");
         cy.visit("http://localhost:3000/create");
-        cy.get("select").select("Cats");
+        cy.get('select[name="topic_slug"]').select("Cats");
         cy.get("textarea")
           .eq(0)
           .type(newTitle);
         cy.get("textarea")
           .eq(1)
           .type(newBody);
-        cy.get("form").submit();
+        cy.get('form[name="createArticle"]').submit();
         cy.url().should("contain", "/articles/5");
         cy.visit("http://localhost:3000/articles/5");
-        cy.get("h5").should("contain", "Article Created");
-        cy.get("h3").should("contain", newTitle);
+        cy.get(".created").should("contain", "Article Created");
+        cy.get("h2").should("contain", newTitle);
       });
     });
   });
@@ -176,8 +179,7 @@ describe("home", () => {
         .should("contain", "UNCOVERED");
     });
     it("articles can be reordered using the sort dropdown", () => {
-      cy.get(".sort")
-        .get("select")
+      cy.get('select[name="sort"]')
         .select("votes");
       cy.get(".article")
         .eq(0)
@@ -199,16 +201,14 @@ describe("home", () => {
         cy.get("p").should("contain", article4.body);
         cy.get(".comment").should("have.length", 1);
         cy.get("textarea").type("this is another comment");
-        cy.get("form").submit();
+        cy.get('form[name="addComment"]').submit();
         cy.get(".comment").should("have.length", 2);
       });
     });
   });
   describe("user profile", () => {
     it("shows the user's articles and comments", () => {
-      cy.get(".users")
-        .eq(0)
-        .eq(0)
+      cy.get(".butter_bridge")
         .click();
       cy.url().should("contain", "/users/butter_bridge/articles");
       cy.visit("http://localhost:3000/users/butter_bridge/articles");
@@ -232,9 +232,8 @@ describe("home", () => {
   describe("voting", () => {
     it("allows users to vote up or down, and reset, only if they did not create the article", () => {
       cy.visit("http://localhost:3000/login");
-      cy.get("select").select("Jonny");
-      cy.get("form")
-        .eq(1)
+      cy.get('select[name="switchUser"]').select("Jonny");
+      cy.get('form[name="switchUser"]')
         .submit();
       cy.get(".voteUp")
         .eq(0)

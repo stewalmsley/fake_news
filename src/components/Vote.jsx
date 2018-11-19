@@ -47,10 +47,10 @@ class Vote extends Component {
 Vote.propTypes = {
   votes: PropTypes.number.isRequired,
   user_id: PropTypes.string.isRequired,
-  author_id: PropTypes.string.isRequired, 
+  author_id: PropTypes.string,
   newArticle: PropTypes.bool, 
   contentType: PropTypes.string, 
-  id: PropTypes.string.isRequired
+  id: PropTypes.string
 };
 
 export default Vote;

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ArticleSnapshot from "./ArticleSnapshot";
 import Sort from "./Sort";
@@ -36,6 +36,7 @@ class Articles extends Component {
           <Sort content="articles" updateSort={updateSort} filter={filter} />
           <form>
             <input
+              aria-label="filter"
               placeholder="Filter articles..."
               value={filter}
               onChange={this.handleInputChange}
@@ -62,12 +63,17 @@ class Articles extends Component {
     const { articles } = this.props;
     const filteredArticles = filter
       ? articles.filter(article => {
-        return (regex.test(article.title) || regex.test(article.body) || regex.test(article.topic) || regex.test(article.created_by.name))
-      })
+          return (
+            regex.test(article.title) ||
+            regex.test(article.body) ||
+            regex.test(article.topic) ||
+            regex.test(article.created_by.name)
+          );
+        })
       : [];
     this.setState({
       filter,
-      filteredArticles,
+      filteredArticles
     });
   };
 }
