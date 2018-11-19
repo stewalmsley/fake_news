@@ -1,6 +1,6 @@
 # fake_news
 
-This project is a React front end for a fake news social network, building on a backend api which I set up using Express and Mongoose - https://github.com/stewalmsley/BE2-northcoders-news.
+This project is a React front end for a fake news social network, building on a backend api which I set up using Express and Mongoose - https://github.com/stewalmsley/fake_news_back_end.
 
 The front end is deployed on netlify - https://ncfakenews.netlify.com/ while the backend is deployed on Heroku (https://steve-news.herokuapp.com/).
 For example - https://steve-news.herokuapp.com/api/articles is the api endpoint for GET requests for all articles from the backend - these are displayed on the homepage of the front end at https://ncfakenews.netlify.com/
@@ -14,7 +14,7 @@ The logged in user is then saved to local storage and logged in next time you lo
 The site allows you to
 - Browse all articles - with comment and vote counts, and links to the author's profile.
 - Filter articles by any string
-- See (on the sidebar) a menu of the most active topics and users, and click through to a menu of all topics and users
+- See (on the sidebar) a menu of the most active topics and users, sorted by the number of articles, comments or votes, and click through to a menu of all topics and users
 - View articles by topic
 - View a particular user with the articles and comments they have made
 - Sort articles/comments by different criteria (date of creation, number of votes/comments)
@@ -28,16 +28,17 @@ The project can be run locally with Node using the Start script defined in the P
 ```http   
 npm start
 ```
-
+There is a unit testing file in the test folder which checks the functionality in the utils folder - used to manipulate and sort the data returned from the api. 
 ```http   
 npm test 
 ```
-to run the unit test file. This testing checks the functionality in the utils folder which is used to manipulate and sort the data returned from the api. 
+
+Cypress integration tests check the key functionality of the app - the ability to log in and create articles, vote (on other users' content), view articles/comments by topic and user. 
 
 ```http   
 npm run cypress:open
 ```
-to run Cypress testing. Make sure to npm start the project from a different terminal window before trying to open the Cypress tests. The Cypress tests check the key functionality of the app - the ability to log in and create articles, vote (on other users' content), view articles/comments by topic and user. 
+Make sure to npm start the project from a different terminal window before trying to open the Cypress tests. 
 
 Author:
 Steve Walmsley - learning Javascript at NorthCoders
