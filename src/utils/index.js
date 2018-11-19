@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
-export const sortArticlesOrComments = (arr, sortOn) => {
+export const sort = (arr, sortOn) => {
   if (sortOn === "created_at") {
     return [...arr].sort((text1, text2) => {
       const diff = dayjs(text1.created_at).diff(
@@ -48,6 +48,13 @@ export const createTopicKey = article => {
     ? article.belongs_to[0].toUpperCase() + article.belongs_to.substring(1)
     : "";
 };
+
+export const addTitleKeyToTopics = topics => {
+  return topics.map(topic => {
+    const title = topic.slug ? topic.slug[0].toUpperCase() + topic.slug.substring(1) : "";
+    return {...topic, title}
+  });
+}
 
 export const convertTime = articleOrComment => {
   return articleOrComment.created_at

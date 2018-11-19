@@ -1,25 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import NavLink from "./NavLink";
+import { Link } from "@reach/router";
 
-const Topics = props => {
-  const { topics } = props;
-  return (
-    <div>
-      <h3>Trending Topics: </h3>
+const Topics = ({ topics }) => {
+  return <div className="topics">
       <ul>
-        {topics.map(topic => {
-          return (
-            <li key={topic._id} className="topic">
+        {topics.slice(0, 2).map(topic => {
+          return <li key={topic.slug} className="topic">
               <NavLink to={`/topics/${topic.slug}/articles`}>
-                {topic.title}
+                <div>{topic.title}</div>
+                <div className="sidebarStats">
+                  ({topic.articleCount} articles with {topic.commentCount} comments and {topic.votes} votes)
+                </div>
               </NavLink>
-            </li>
-          );
+            </li>;
         })}
+      <li className="browse"><Link to="/menu"> See All Topics</Link></li>
       </ul>
-    </div>
-  );
+    </div>;
 };
 
 Topics.propTypes = {

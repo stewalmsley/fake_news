@@ -42,8 +42,8 @@ class Topic extends Component {
   fetchArticles() {
     api
       .getArticles(this.props.topic_slug)
-      .then(articles => {
-        const sortedArticles = utils.sortArticlesOrComments(
+      .then(({ articles }) => {
+        const sortedArticles = utils.sort(
           articles,
           "commentCount"
         );
@@ -62,7 +62,7 @@ class Topic extends Component {
       });
   }
   updateSort = event => {
-    const sortedArticles = utils.sortArticlesOrComments(
+    const sortedArticles = utils.sort(
       this.state.articles,
       event.target.value
     );

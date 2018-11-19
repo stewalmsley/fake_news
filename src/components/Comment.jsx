@@ -29,9 +29,10 @@ class Comment extends Component {
         {deleteError && <p>Encountered and Error trying to Delete </p>}
         <button className="comment" onClick={() => this.expandComment()}>
           <h3>
+            {source === "user" && <Link to={`/articles/${comment.belongs_to}`}> Click for Article</Link>}
             <Link
               key={comment._id}
-              to={`/users/${comment.created_by.username}`}
+              to={`/users/${comment.created_by.username}/articles`}
             >
               {comment.created_by.name}
             </Link>{" "}

@@ -78,11 +78,11 @@ class User extends Component {
     api
       .getUser(this.props.username)
       .then(({ user, articles, comments }) => {
-        const sortedArticles = utils.sortArticlesOrComments(
+        const sortedArticles = utils.sort(
           articles,
           "commentCount"
         );
-        const sortedComments = utils.sortArticlesOrComments(comments, "votes");
+        const sortedComments = utils.sort(comments, "votes");
         this.setState({
           userProfile: user,
           articles: sortedArticles,
@@ -102,7 +102,7 @@ class User extends Component {
 
   updateSort = event => {
     const items = this.props.content;
-    const sortedItems = utils.sortArticlesOrComments(
+    const sortedItems = utils.sort(
       this.state[items],
       event.target.value
     );

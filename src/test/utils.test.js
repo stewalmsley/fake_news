@@ -1,5 +1,5 @@
 const {
-  sortArticlesOrComments,
+  sort,
   addKeysToArticles,
   addKeysToComments,
   createCroppedBody,
@@ -7,22 +7,22 @@ const {
   convertTime
 } = require("../utils");
 
-describe("sortArticlesOrComments()", () => {
+describe("sort()", () => {
   const obj1 = {
     title: "article1",
-    commentCount: 0,
+    commentCount: 90,
     votes: 1,
     created_at: "01/01/2018"
   };
   const obj2 = {
     title: "article2",
-    commentCount: 1,
+    commentCount: 102,
     votes: 2,
     created_at: "01/01/2016"
   };
   const obj3 = {
     title: "article3",
-    commentCount: 2,
+    commentCount: 132,
     votes: 0,
     created_at: "01/01/2017"
   };
@@ -31,21 +31,21 @@ describe("sortArticlesOrComments()", () => {
   const arrSortedByComments = [obj3, obj2, obj1];
   const arrSortedByDate = [obj1, obj3, obj2];
   it("returns an array of objects ordered by the provided key", () => {
-    expect(sortArticlesOrComments(originalArr, "votes")).toEqual(
+    expect(sort(originalArr, "votes")).toEqual(
       arrSortedByVotes
     );
-    expect(sortArticlesOrComments(originalArr, "commentCount")).toEqual(
+    expect(sort(originalArr, "commentCount")).toEqual(
       arrSortedByComments
     );
-    expect(sortArticlesOrComments(originalArr, "created_at")).toEqual(
+    expect(sort(originalArr, "created_at")).toEqual(
       arrSortedByDate
     );
   });
   it("returns a blank array when provided with a blank array", () => {
-    expect(sortArticlesOrComments([], "votes")).toEqual([]);
+    expect(sort([], "votes")).toEqual([]);
   });
   it("does not mutate the original array", () => {
-    sortArticlesOrComments(originalArr);
+    sort(originalArr);
     expect(originalArr).not.toEqual(arrSortedByVotes);
   });
 });

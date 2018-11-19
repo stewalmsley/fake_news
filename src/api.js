@@ -8,8 +8,12 @@ export const getArticles = async topic => {
     ? `${BASE_URL}/topics/${topic}/articles`
     : `${BASE_URL}/articles`;
   const { data } = await axios.get(URL);
-  data.articles = utils.addKeysToArticles(data.articlesWithCommentCounts);
-  return data.articles;
+  const { articlesWithCommentCounts, topicsAndAuthors } = data;
+  const articles = utils.addKeysToArticles(articlesWithCommentCounts);
+  if (topic) return { articles };
+  const { topics, authors } = topicsAndAuthors
+  const topicsWithTitle = utils.addTitleKeyToTopics(topics)
+  return { articles, authors, topicsWithTitle };
 };
 
 export const getArticle = async articleId => {

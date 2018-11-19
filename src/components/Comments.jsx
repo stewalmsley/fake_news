@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Comment from "./Comment";
 
-const Comments = ({ comments, user, source, userProfile }) => {
+const Comments = ({ comments, user, source, userProfile, updateSort }) => {
   return (
     <div>
       {source === "user" && <h3>Comments ({comments.length})</h3>}

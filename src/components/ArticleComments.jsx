@@ -25,7 +25,7 @@ class ArticleComments extends Component {
         <AddComment addComment={this.addComment} />
         Comments ({commentCount}
         ):
-        <Sort updateSort={this.updateSort} />
+        <Sort updateSort={this.updateSort} content="comments" />
         <Comments comments={comments} user={user} />
       </div>
     );
@@ -39,7 +39,7 @@ class ArticleComments extends Component {
       .getArticleComments(this.props.articleId)
       .then(comments => {
         const sortedCroppedComments = comments.length
-          ? utils.sortArticlesOrComments(comments, "votes")
+          ? utils.sort(comments, "votes")
           : comments;
         this.setState({
           comments: sortedCroppedComments,
@@ -66,7 +66,7 @@ class ArticleComments extends Component {
   };
 
   updateSort = event => {
-    const sortedComments = utils.sortArticlesOrComments(
+    const sortedComments = utils.sort(
       this.state.comments,
       event.target.value
     );

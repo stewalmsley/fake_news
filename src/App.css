@@ -4,25 +4,40 @@
   font-size: 22px;
   font-family: Arial, Helvetica, sans-serif;
   display: grid;
-  grid-template-columns: 1fr 3.9fr;
-  grid-template-rows: 15% 5% 10fr;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 12.5% 7.5% 70%;
   grid-template-areas:
     "header header"
     "sidebar nav"
     "sidebar main";
 }
 
-.App-header {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 4%;
-  margin-right: 4%;
-  margin-bottom: 5%;
-}
-
 header {
   grid-area: header;
-  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-rows: 100%;
+  grid-template-areas: 
+  "fakeNews . . loggedIn";
+}
+
+.fakeNews {
+  grid-area: fakeNews;
+}
+
+.loggedIn {
+  grid-area: loggedIn;
+}
+
+.fakeNews, .loggedIn {
+  height: 100%;
+  display: table;
+}
+
+.headingContainer, .loggedInContainer {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 
 h1 {
@@ -37,16 +52,23 @@ h3 {
   font-size: 20px;
 }
 
+h4 { 
+  font-size: 17px
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
 .topic,
 .user {
   font-size: 16px;
   margin-top: 10%;
-  list-style: none;
 }
 
 .hello {
   font-size: 15px;
-  margin-top: 2%;
 }
 
 .loginError {
@@ -63,8 +85,32 @@ img {
 
 nav {
   grid-area: nav;
-  display: flex;
-  justify-content: space-around;
+  border: 1px solid rgba(240, 245, 245, 0.952);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
+  grid-template-areas:
+    "create login";
+}
+
+.create {
+  grid-area: create;
+}
+
+.login {
+  grid-area: login;
+}
+
+.create, .login {
+  display: table;
+  height: 100%;
+}
+
+.buttonContainer {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  height: 100%;
 }
 
 .navbutton {
@@ -74,8 +120,31 @@ nav {
 
 section {
   grid-area: sidebar;
+  text-align: right;
+  border: 1px solid rgba(240, 245, 245, 0.952);
+  padding: 10%;
 }
 
+.topicUserSearch {
+  margin-bottom: 20%;
+}
+
+.topics {
+  margin-top: 15%;
+}
+
+.users { 
+  margin-top: 15%;
+}
+
+.sidebarStats {
+  font-size: 12px
+}
+
+.browse {
+  font-size: 15px;
+  margin-top: 10%
+}
 main {
   grid-area: main;
 }
@@ -137,10 +206,12 @@ p {
   }
 }
 
-.sort {
-  text-align: left;
-  margin-left: 5%;
+.sortOrFilter {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 0.5%;
+  margin-left: 5%;
+  margin-right: 5%;
   font-size: 20px;
 }
 
@@ -163,7 +234,7 @@ p {
 
 .comment {
   width: 100%;
-  background-color: rgba(243, 242, 242, 0.986);
+  background: white;
   color: rgba(45, 46, 46, 0.924);
   font-weight: 600;
 }
@@ -178,10 +249,6 @@ h3 {
   margin-bottom: 0.5%;
 }
 
-section {
-  margin-top: 5%;
-}
-
 .sidebar .active {
   color: black;
   font-weight: 600;
@@ -191,3 +258,27 @@ section {
   color: rgba(50, 100, 200, 0.9);
   font-weight: 600;
 }
+
+.menu {
+  display: grid;
+  grid-template-columns: 2fr 3fr 3fr 2fr;
+  grid-template-rows: 100%;
+  grid-template-areas:
+    ". topics users . "
+}
+
+.topicMenu {
+  grid-area: topics;
+  text-align: left
+}
+
+.userMenu {
+  grid-area: users;
+  text-align: left
+}
+
+.menuItem { 
+  margin-top: 5%
+}
+
+

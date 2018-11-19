@@ -1,25 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import NavLink from "./NavLink";
+import { Link } from "@reach/router";
 
 const Users = props => {
   const { users } = props;
-  return (
-    <div>
-      <h3>Trending Users: </h3>
+  return <div className="users">
       <ul>
-        {users.map(user => {
-          return (
-            <li key={user._id} className="user">
+        {users.slice(0, 2).map(user => {
+          return <li key={user._id} className="user">
               <NavLink to={`/users/${user.username}/articles`}>
-                {user.username}
+                <div>{user.username}</div>
+                <div className="sidebarStats">
+                  ({user.articleCount} articles, receiving {user.commentCount} comments and {user.votes} votes)
+                </div>
               </NavLink>
-            </li>
-          );
+            </li>;
         })}
+        <li className="browse"><Link to="/menu"> See All Users</Link></li>
       </ul>
-    </div>
-  );
+    </div>;
 };
 
 Users.propTypes = {
