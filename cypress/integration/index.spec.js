@@ -53,10 +53,11 @@ describe("home", () => {
           articleWithCommentCount: {
             title: newTitle,
             body: newBody,
-            _id: 5,
+            _id: "5",
             created_by: mitch,
             belongs_to: "cats",
-            created_at: 1514093931240
+            created_at: 1514093931240, 
+            votes: 0
           }
         }
       });
@@ -67,7 +68,7 @@ describe("home", () => {
           article: {
             title: newTitle,
             body: newBody,
-            _id: 5,
+            _id: "5",
             created_by: mitch,
             votes: 0,
             commentCount: 0
@@ -108,10 +109,17 @@ describe("home", () => {
         }
       });
       cy.route({
-        method: "POST",
-        url: "/api/articles/4/vote=up",
+        method: "PATCH",
+        url: "/api/articles/4?vote=up",
         response: {
           articleWithCommentCount: { ...article4, votes: 1 }
+        }
+      });
+      cy.route({
+        method: "PATCH",
+        url: "/api/articles/4?vote=down",
+        response: {
+          articleWithCommentCount: { ...article4, votes: 0 }
         }
       });
     });

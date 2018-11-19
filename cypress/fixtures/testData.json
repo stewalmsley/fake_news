@@ -3,7 +3,7 @@
     "username": "dedekind561",
     "name": "Mitch",
     "avatar_url": "https://carboncostume.com/wordpress/wp-content/uploads/2017/10/dale-chipanddalerescuerangers.jpg",
-    "_id": 2, 
+    "_id": "2", 
     "commentCount": 4, 
     "votes": 0, 
     "articleCount": 2
@@ -11,7 +11,7 @@
   "jonny": {
     "username": "butter_bridge",
     "name": "Jonny",
-    "_id": 1,
+    "_id": "1",
     "avatar_url": "https://", 
     "commentCount": 4, 
     "votes": 0, 
@@ -63,7 +63,7 @@
     "votes": 2,
     "created_by": "jonny",
     "created_at": 1514093931240,
-    "_id": 1
+    "_id": "1"
   },
   "newTitle": "this is the title",
   "newBody": "this is the body",
@@ -71,7 +71,7 @@
     {
       "title": "Mitch",
       "slug": "mitch",
-      "_id": 1, 
+      "_id": "1", 
       "votes": 0,
       "commentCount": 4, 
       "articleCount": 2
@@ -79,7 +79,7 @@
     {
       "title": "Cats",
       "slug": "cats",
-      "_id": 2, 
+      "_id": "2", 
       "votes": 0,
       "commentCount": 4, 
       "articleCount": 2
